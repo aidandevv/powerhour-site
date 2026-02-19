@@ -162,6 +162,26 @@
   animation: rise 620ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
+.animate-rise-100 {
+  animation: rise 550ms 100ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.animate-rise-200 {
+  animation: rise 550ms 200ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.animate-rise-300 {
+  animation: rise 550ms 300ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.animate-rise-400 {
+  animation: rise 550ms 400ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.animate-rise-500 {
+  animation: rise 550ms 500ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
 @keyframes rise {
   from {
     opacity: 0;
@@ -175,7 +195,12 @@
 
 @media (prefers-reduced-motion: reduce) {
   .animate-rise,
-  .animate-rise-delayed {
+  .animate-rise-delayed,
+  .animate-rise-100,
+  .animate-rise-200,
+  .animate-rise-300,
+  .animate-rise-400,
+  .animate-rise-500 {
     animation: none;
   }
 

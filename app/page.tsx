@@ -3,7 +3,9 @@ import {
   DeploySection,
   FeatureGridSection,
   HeroSection,
+  OpenSourceSection,
   SecuritySection,
+  TechStackStrip,
 } from "@/components/home-sections";
 
 const softwareSchema = {
@@ -24,8 +26,10 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
       />
       <HeroSection />
+      <TechStackStrip />
       <FeatureGridSection />
       <SecuritySection />
+      <OpenSourceSection />
       <DeploySection />
       <CtaSection />
     </>

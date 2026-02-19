@@ -5,12 +5,13 @@ import {
   SECURITY_POINTS,
   SITE_TAGLINE,
 } from "@/lib/site-config";
+import { HeroShaderGradient } from "@/components/hero-shader-gradient";
 
 export function HeroSection() {
   return (
     <section className="relative overflow-hidden">
-      <div className="hero-bg" aria-hidden="true" />
-      <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-20 md:grid-cols-[1.2fr_1fr] md:py-28">
+      <HeroShaderGradient />
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-10 px-6 py-20 md:grid-cols-[1.2fr_1fr] md:py-28">
         <div className="space-y-6 animate-rise">
           <p className="inline-flex rounded-full border border-border bg-surface px-4 py-1 text-sm font-medium text-text-muted">
             Open-source friendly marketing shell

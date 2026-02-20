@@ -38,7 +38,7 @@ export default function HeroShaderGradientClient() {
     uAmplitude: 1,
     uDensity: 1.3,
     uFrequency: 5.5,
-    uSpeed: 0.03,
+    uSpeed: 0.2,
     uStrength: 4,
     uTime: 0,
     wireframe: false,

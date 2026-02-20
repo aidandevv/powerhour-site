@@ -13,7 +13,7 @@ export const CTA_SUBTEXT =
 export const PRIMARY_NAV = [
   { label: "Features", href: "/features" },
   { label: "Security", href: "/security" },
-  { label: "Open Source", href: "/deploy" },
+  { label: "Self-hosting", href: "/deploy" },
 ];
 
 export const FEATURE_SUMMARIES = [
@@ -97,7 +97,7 @@ export const DEPLOY_STEPS = [
   {
     step: "2",
     title: "Run database migrations",
-    body: "Powerhour uses Drizzle ORM. Run the migration command to create all 16 tables.",
+    body: "Powerhour uses Drizzle ORM. Run the migration command to apply the full schema.",
     code: "npm run db:migrate",
   },
   {

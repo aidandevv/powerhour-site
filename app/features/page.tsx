@@ -1,76 +1,277 @@
 import type { Metadata } from "next";
-import { FEATURE_SUMMARIES } from "@/lib/site-config";
+import Link from "next/link";
+import { HeroShaderGradient } from "@/components/hero-shader-gradient";
+import { FEATURE_SUMMARIES, GITHUB_URL } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Features",
   description:
-    "Explore Powerhour's unified dashboard, Ticker AI chat with 12 tools, Budget Planner agent, in-memory PDF reports, subscription audit, and smart budget goals.",
+    "Explore every Powerhour capability: dashboard analytics, Ticker AI, Budget Planner modes, PDF reporting, recurring audits, smart goals, and self-hosting workflows.",
 };
 
-const ICON_PATHS: Record<string, string> = {
-  dashboard:
-    "M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z",
-  chat: "M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z",
-  plan: "M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z",
-  report:
-    "M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z",
-  subscription:
-    "M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z",
-  goal: "M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z",
-};
+const PRODUCT_METRICS = [
+  { value: "13", label: "Live visualizations across dashboard and account views" },
+  { value: "2", label: "Purpose-built AI agents with distinct execution models" },
+  { value: "9", label: "In-memory PDF report sections generated on demand" },
+];
 
-function PageFeatureIcon({ name }: { name: string }) {
-  const d = ICON_PATHS[name] ?? ICON_PATHS.dashboard;
+const CORE_MODULES = [
+  {
+    title: "Dashboard command center",
+    body: "One-page financial posture with net worth trend, KPI cards, account distribution, and category-level spend movement.",
+    points: [
+      "Net worth and balance history views",
+      "Spending and payment channel trend charts",
+      "Credit utilization visibility",
+      "Recent transactions and account overview",
+    ],
+  },
+  {
+    title: "Transactions and grouping workflows",
+    body: "Search, filter, and organize transaction-level detail for precise cleanup and category analysis.",
+    points: [
+      "Merchant/category/date filtering",
+      "Pagination and debounced search",
+      "Expense group creation and assignment",
+      "Group-level review flows",
+    ],
+  },
+  {
+    title: "Accounts and projections",
+    body: "Institution-by-institution detail plus recurring forecasts that help you plan ahead.",
+    points: [
+      "Institution-grouped account listing",
+      "Per-account balance history charts",
+      "Recurring item management",
+      "Savings projection timelines",
+    ],
+  },
+  {
+    title: "Subscription waste detection",
+    body: "Recurring audit identifies likely inactive charges and quantifies potential monthly/annual savings at risk.",
+    points: [
+      "90+ day inactivity flagging",
+      "Monthly savings-at-risk calculations",
+      "Active vs flagged segmentation",
+      "Direct follow-up via planner and budgets",
+    ],
+  },
+  {
+    title: "Smart budget goals",
+    body: "Category caps generated from historical spend behavior with ongoing progress tracking.",
+    points: [
+      "AI-assisted category cap suggestions",
+      "Per-goal progress bars",
+      "Month-over-month context",
+      "Integrated with dashboard modules",
+    ],
+  },
+  {
+    title: "Self-hosted operations",
+    body: "Designed for transparent infrastructure ownership and predictable deployment workflows.",
+    points: [
+      "Dockerized deployment path",
+      "PostgreSQL + Drizzle migrations",
+      "Environment-based configuration",
+      "No required SaaS control plane",
+    ],
+  },
+];
+
+const TICKER_TOOLS = [
+  "Spending summary",
+  "Account balances",
+  "Transaction search",
+  "Trend comparison",
+  "Recurring expenses",
+  "Recurring audit",
+  "Cash flow forecast",
+  "Merchant category analysis",
+  "Anomaly detection",
+  "Debt payoff projection",
+  "Weekly digest",
+  "Report generation trigger",
+];
+
+const PLANNER_MODES = [
+  {
+    mode: "Travel budgets",
+    detail:
+      "Captures trip constraints, researches current pricing, then synthesizes practical low/mid/high budget scenarios.",
+  },
+  {
+    mode: "Savings goals",
+    detail:
+      "Calculates required monthly contributions, checks feasibility against recurring load, and writes targets to tracking views.",
+  },
+  {
+    mode: "Cut spending",
+    detail:
+      "Analyzes category intensity and recommends reduction targets that can be promoted into persistent budget goals.",
+  },
+];
+
+const PAGE_COVERAGE = [
+  { route: "/", focus: "Dashboard + embedded Ticker AI" },
+  { route: "/transactions", focus: "Search, filters, and expense groups" },
+  { route: "/accounts", focus: "Institution and account-level visibility" },
+  { route: "/projections", focus: "Recurring schedules and savings forecasting" },
+  { route: "/subscriptions", focus: "Inactive recurring charge detection" },
+  { route: "/budgets", focus: "Smart category cap management" },
+  { route: "/budget-planner", focus: "Planner agent with mode-specific flows" },
+  { route: "/settings", focus: "Security log, schedules, auth, and institutions" },
+];
+
+function FeatureCard({ title, body, points }: { title: string; body: string; points: string[] }) {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width="24"
-      height="24"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      <path d={d} />
-    </svg>
+    <article className="rounded-card border border-border bg-surface p-6 shadow-card transition duration-200 hover:-translate-y-0.5 hover:shadow-card-hover">
+      <h3 className="text-2xl font-semibold text-text">{title}</h3>
+      <p className="mt-3 text-sm leading-relaxed text-text-muted">{body}</p>
+      <ul className="mt-5 space-y-2 text-sm text-text-muted">
+        {points.map((point) => (
+          <li key={point} className="flex items-start gap-2">
+            <span className="mt-1 h-1.5 w-1.5 rounded-full bg-brand" />
+            <span>{point}</span>
+          </li>
+        ))}
+      </ul>
+    </article>
   );
 }
 
 export default function FeaturesPage() {
   return (
-    <section className="mx-auto w-full max-w-6xl px-6 py-16 md:py-24">
-      <h1 className="text-4xl font-extrabold text-text md:text-5xl">Features</h1>
-      <p className="mt-4 max-w-3xl text-lg text-text-muted">
-        Powerhour combines core finance observability with practical AI workflows that operate on your synced financial data.
-      </p>
-
-      <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {FEATURE_SUMMARIES.map((feature) => (
-          <article
-            key={feature.title}
-            className="rounded-card border border-border bg-surface p-6 shadow-card"
-          >
-            <div className="mb-4 inline-flex rounded-xl bg-brand/10 p-2 text-brand">
-              <PageFeatureIcon name={feature.icon} />
+    <>
+      <section className="relative overflow-hidden">
+        <HeroShaderGradient />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 z-[1] bg-gradient-to-b from-background/35 via-background/10 to-background/60"
+        />
+        <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-10 px-6 py-16 md:grid-cols-[1.2fr_1fr] md:py-24">
+          <div className="animate-rise space-y-6 rounded-card border border-border bg-surface p-6 shadow-card md:p-8">
+            <p className="inline-flex rounded-full border border-border bg-background px-4 py-1 text-sm font-medium text-text-muted">
+              Full platform capabilities
+            </p>
+            <h1 className="max-w-3xl text-4xl font-extrabold leading-tight text-text md:text-6xl md:leading-[1.05]">
+              Every feature built for daily financial decisions, not dashboards for show.
+            </h1>
+            <p className="max-w-2xl text-lg text-text-muted">
+              Powerhour combines deep account analytics, two specialized AI agent workflows, automated recurring audits, and report generation in one self-hosted stack.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/deploy"
+                className="rounded-full bg-brand px-6 py-3 text-base font-semibold text-white transition hover:bg-brand-strong"
+              >
+                Deploy it
+              </Link>
+              <Link
+                href={GITHUB_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full border border-border bg-background px-6 py-3 text-base font-semibold text-text transition hover:border-brand hover:text-brand"
+              >
+                Browse source
+              </Link>
             </div>
-            <h2 className="text-xl font-semibold text-text">{feature.title}</h2>
-            <p className="mt-3 text-sm leading-relaxed text-text-muted">{feature.body}</p>
-          </article>
-        ))}
-      </div>
+          </div>
+          <div className="animate-rise-delayed grid gap-4">
+            {PRODUCT_METRICS.map((item) => (
+              <article key={item.label} className="rounded-card border border-border bg-surface p-6 shadow-card">
+                <p className="text-4xl font-extrabold text-brand">{item.value}</p>
+                <p className="mt-2 text-sm font-medium text-text-muted">{item.label}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <div className="mt-12 rounded-card border border-border bg-surface-alt p-6">
-        <h2 className="text-2xl font-bold text-text">Technical depth snapshot</h2>
-        <ul className="mt-4 grid gap-2 sm:grid-cols-2 text-sm text-text-muted">
-          <li><span className="font-mono text-text-muted">→</span> Next.js 14 App Router + TypeScript strict mode</li>
-          <li><span className="font-mono text-text-muted">→</span> Plaid transactions sync with recurring detection</li>
-          <li><span className="font-mono text-text-muted">→</span> Ticker agent: 12 tools across spending, trends, and forecasts</li>
-          <li><span className="font-mono text-text-muted">→</span> Budget Planner agent: travel, savings goal, and cut-spending modes</li>
-          <li><span className="font-mono text-text-muted">→</span> In-memory PDF rendering with custom chart primitives</li>
-          <li><span className="font-mono text-text-muted">→</span> Drizzle ORM with 16 typed tables and migration pipeline</li>
-          <li><span className="font-mono text-text-muted">→</span> AI SDK v6 streaming with tool call orchestration</li>
-          <li><span className="font-mono text-text-muted">→</span> Daily sync scheduler + Monday weekly digest generation</li>
-        </ul>
-      </div>
-    </section>
+      <section className="mx-auto w-full max-w-6xl px-6 py-16 md:py-24">
+        <h2 className="text-3xl font-bold text-text md:text-4xl">Core feature modules</h2>
+        <p className="mt-3 max-w-3xl text-text-muted">
+          These modules form the primary workflow from data ingestion to weekly planning and execution.
+        </p>
+        <div className="mt-10 grid gap-4 md:grid-cols-2">
+          {CORE_MODULES.map((module) => (
+            <FeatureCard key={module.title} title={module.title} body={module.body} points={module.points} />
+          ))}
+        </div>
+      </section>
+
+      <section className="border-y border-border bg-surface-alt">
+        <div className="mx-auto grid w-full max-w-6xl gap-6 px-6 py-16 md:grid-cols-2 md:py-24">
+          <article className="rounded-card border border-border bg-surface p-6 shadow-card">
+            <h3 className="text-2xl font-bold text-text">Ticker AI chat</h3>
+            <p className="mt-3 text-sm text-text-muted">
+              Conversational analysis agent embedded in the dashboard for quick investigation and reporting actions.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {TICKER_TOOLS.map((tool) => (
+                <span
+                  key={tool}
+                  className="rounded-full border border-border bg-background px-3 py-1 text-xs font-semibold text-text-muted"
+                >
+                  {tool}
+                </span>
+              ))}
+            </div>
+          </article>
+          <article className="rounded-card border border-border bg-surface p-6 shadow-card">
+            <h3 className="text-2xl font-bold text-text">Budget Planner agent</h3>
+            <p className="mt-3 text-sm text-text-muted">
+              Long-form planning workflow optimized for objective-setting and decision support.
+            </p>
+            <div className="mt-5 space-y-3">
+              {PLANNER_MODES.map((mode) => (
+                <div key={mode.mode} className="rounded-xl border border-border bg-background p-4">
+                  <p className="text-sm font-semibold text-text">{mode.mode}</p>
+                  <p className="mt-1 text-sm text-text-muted">{mode.detail}</p>
+                </div>
+              ))}
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-6 py-16 md:py-24">
+        <h2 className="text-3xl font-bold text-text md:text-4xl">Feature coverage by page</h2>
+        <p className="mt-3 max-w-3xl text-text-muted">
+          The app surface is split into focused pages so finance operations stay fast and understandable.
+        </p>
+        <div className="mt-8 overflow-hidden rounded-card border border-border bg-surface shadow-card">
+          <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,2fr)] border-b border-border bg-background px-5 py-3 text-xs font-semibold uppercase tracking-wide text-text-muted">
+            <p>Route</p>
+            <p>Primary focus</p>
+          </div>
+          {PAGE_COVERAGE.map((row) => (
+            <div
+              key={row.route}
+              className="grid grid-cols-[minmax(0,1fr)_minmax(0,2fr)] border-b border-border px-5 py-4 text-sm last:border-none"
+            >
+              <p className="font-mono font-semibold text-text">{row.route}</p>
+              <p className="text-text-muted">{row.focus}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-t border-border bg-surface">
+        <div className="mx-auto w-full max-w-6xl px-6 py-16 md:py-20">
+          <h2 className="text-3xl font-bold text-text md:text-4xl">Highlights at a glance</h2>
+          <p className="mt-3 max-w-3xl text-text-muted">
+            From {FEATURE_SUMMARIES.length} major product pillars to detailed page-level workflows, Powerhour is designed as a comprehensive, auditable personal finance operating system.
+          </p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {FEATURE_SUMMARIES.map((feature) => (
+              <article key={feature.title} className="rounded-card border border-border bg-background p-5">
+                <h3 className="text-lg font-semibold text-text">{feature.title}</h3>
+                <p className="mt-2 text-sm text-text-muted">{feature.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

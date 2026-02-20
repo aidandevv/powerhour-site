@@ -121,7 +121,7 @@ export function HeroSection() {
           {[
             { n: "24", label: "AI tools across two agents" },
             { n: "9",  label: "PDF report sections" },
-            { n: "16", label: "Database tables" },
+            { n: "13", label: "Visualizations" },
           ].map(({ n, label }) => (
             <div
               key={label}
@@ -173,7 +173,7 @@ export function FeatureGridSection() {
           Two AI agents. One self-hosted stack.<br className="hidden md:block" /> Full financial visibility.
         </h2>
         <p className="mt-4 max-w-2xl text-text-muted">
-          Account aggregation, historical analytics, AI planning workflows, and audit-friendly security controls in a single codebase you own.
+          Two purpose-built AI agents, 13 live visualizations, structured planning workflows, and audit-ready security controls — in a single codebase you own.
         </p>
       </div>
 

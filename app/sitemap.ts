@@ -6,34 +6,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     {
-      url: `${base}/`,
+      url: `${base}/docs`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: `${base}/features`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${base}/security`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${base}/docs`,
+      url: `${base}/docs/walkthroughs`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${base}/deploy`,
+      url: `${base}/docs/faq`,
       lastModified: new Date(),
       changeFrequency: "weekly",
-      priority: 0.8,
+      priority: 0.9,
     },
   ];
 }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { GITHUB_URL, SITE_NAME, SITE_TAGLINE } from "@/lib/site-config";
+import { APP_SITE_URL, SITE_NAME, SITE_TAGLINE } from "@/lib/site-config";
 
 export function SiteFooter() {
   const currentYear = new Date().getFullYear();
@@ -21,24 +21,24 @@ export function SiteFooter() {
           <div className="space-y-3">
             <p className="text-xs font-semibold uppercase tracking-widest text-text-muted">Product</p>
             <nav className="flex flex-col gap-2">
-              <Link href="/features" className="text-sm text-text-muted transition-colors hover:text-text">Features</Link>
-              <Link href="/security" className="text-sm text-text-muted transition-colors hover:text-text">Security</Link>
+              <Link href={`${APP_SITE_URL}/features`} className="text-sm text-text-muted transition-colors hover:text-text">Features</Link>
+              <Link href={`${APP_SITE_URL}/security`} className="text-sm text-text-muted transition-colors hover:text-text">Security</Link>
               <Link href="/docs" className="text-sm text-text-muted transition-colors hover:text-text">Documentation</Link>
-              <Link href="/deploy" className="text-sm text-text-muted transition-colors hover:text-text">Self-hosting</Link>
+              <Link href={`${APP_SITE_URL}/deploy`} className="text-sm text-text-muted transition-colors hover:text-text">Self-hosting</Link>
             </nav>
           </div>
 
-          {/* Col 3: Open Source */}
+          {/* Col 3: Platform */}
           <div className="space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-widest text-text-muted">Open Source</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-text-muted">Platform</p>
             <nav className="flex flex-col gap-2">
               <Link
-                href={GITHUB_URL}
+                href={APP_SITE_URL}
                 target="_blank"
                 rel="noreferrer"
                 className="text-sm text-text-muted transition-colors hover:text-text"
               >
-                GitHub repository
+                powerhour.dev
               </Link>
               <p className="text-sm text-text-muted">ISC License</p>
             </nav>

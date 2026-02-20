@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { GITHUB_URL, SITE_URL } from "@/lib/site-config";
+import { APP_SITE_URL, SITE_URL } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Documentation",
@@ -683,27 +683,11 @@ const docsSchema = {
   },
 };
 
-function normalizeRepoUrl(url: string) {
-  const trimmed = url.replace(/\/+$/, "").replace(/\.git$/, "");
-  return trimmed.replace(/\/(blob|tree)\/.+$/, "");
-}
-
-function toGithubFileUrl(path: string) {
-  const base = normalizeRepoUrl(GITHUB_URL);
-  const encodedPath = path.split("/").map((segment) => encodeURIComponent(segment)).join("/");
-  return `${base}/blob/main/${encodedPath}`;
-}
-
 function SourceLink({ path }: { path: string }) {
   return (
-    <a
-      href={toGithubFileUrl(path)}
-      target="_blank"
-      rel="noreferrer"
-      className="break-all font-mono text-xs text-brand underline underline-offset-2"
-    >
+    <span className="break-all font-mono text-xs text-text">
       {path}
-    </a>
+    </span>
   );
 }
 
@@ -752,20 +736,28 @@ export default function DocsPage() {
             agent tooling, data and security design, deployment concerns, and source-level links into the repository.
           </p>
           <div className="flex flex-wrap gap-3">
-            <Link href="/deploy" className="rounded border border-border px-4 py-2 text-sm font-semibold text-text">
-              Deployment guide
-            </Link>
-            <Link href="/security" className="rounded border border-border px-4 py-2 text-sm font-semibold text-text">
-              Security page
-            </Link>
             <a
-              href={normalizeRepoUrl(GITHUB_URL)}
+              href={`${APP_SITE_URL}/deploy`}
               target="_blank"
               rel="noreferrer"
               className="rounded border border-border px-4 py-2 text-sm font-semibold text-text"
             >
-              Main repository
+              Deployment guide
             </a>
+            <a
+              href={`${APP_SITE_URL}/security`}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded border border-border px-4 py-2 text-sm font-semibold text-text"
+            >
+              Security page
+            </a>
+            <Link href="/docs/walkthroughs" className="rounded border border-border px-4 py-2 text-sm font-semibold text-text">
+              Walkthroughs
+            </Link>
+            <Link href="/docs/faq" className="rounded border border-border px-4 py-2 text-sm font-semibold text-text">
+              FAQ
+            </Link>
           </div>
         </div>
 

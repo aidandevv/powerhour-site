@@ -13,6 +13,15 @@ const SITE_URL_WITH_PROTOCOL = RAW_SITE_URL.startsWith("http")
 
 export const SITE_URL = SITE_URL_WITH_PROTOCOL.replace(/\/+$/, "");
 
+const RAW_APP_SITE_URL =
+  process.env.NEXT_PUBLIC_APP_SITE_URL ?? "https://powerhour.dev";
+
+const APP_SITE_URL_WITH_PROTOCOL = RAW_APP_SITE_URL.startsWith("http")
+  ? RAW_APP_SITE_URL
+  : `https://${RAW_APP_SITE_URL}`;
+
+export const APP_SITE_URL = APP_SITE_URL_WITH_PROTOCOL.replace(/\/+$/, "");
+
 export const HERO_BADGE = "Open source · ISC License";
 
 export const CTA_HEADLINE = "Your data. Your server. Your rules.";
@@ -20,10 +29,10 @@ export const CTA_SUBTEXT =
   "Powerhour is ISC-licensed and self-hosted. Clone the repo, run the migrations, and own your financial data stack.";
 
 export const PRIMARY_NAV = [
-  { label: "Features", href: "/features" },
-  { label: "Security", href: "/security" },
+  { label: "Features", href: `${APP_SITE_URL}/features` },
+  { label: "Security", href: `${APP_SITE_URL}/security` },
   { label: "Docs", href: "/docs" },
-  { label: "Self-hosting", href: "/deploy" },
+  { label: "Self-hosting", href: `${APP_SITE_URL}/deploy` },
 ];
 
 export const FEATURE_SUMMARIES = [

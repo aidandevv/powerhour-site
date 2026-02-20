@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DocsNav } from "@/components/docs/docs-nav.client";
 import { StickyToc, type TocItem } from "@/components/docs/sticky-toc.client";
 import { DOCS_SITE_URL } from "@/lib/site-config";
 
@@ -148,6 +149,7 @@ export default function WalkthroughPage() {
           Standard operational playbooks for self-hosted instances. Route references below are internal app paths in
           your own deployment.
         </p>
+        <DocsNav />
       </header>
 
       <div className="grid gap-10 lg:grid-cols-[260px_minmax(0,1fr)]">

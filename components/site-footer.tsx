@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { APP_SITE_URL, DOCS_SITE_URL, SITE_NAME, SITE_TAGLINE } from "@/lib/site-config";
+import { APP_SITE_URL, DOCS_SITE_URL, GITHUB_URL, SITE_NAME, SITE_TAGLINE } from "@/lib/site-config";
 
 export function SiteFooter() {
   const currentYear = new Date().getFullYear();
@@ -34,11 +34,23 @@ export function SiteFooter() {
             <nav className="flex flex-col gap-2">
               <Link
                 href={APP_SITE_URL}
+                className="text-sm text-text-muted transition-colors hover:text-text"
+              >
+                powerhour.dev
+              </Link>
+              <Link
+                href={DOCS_SITE_URL}
+                className="text-sm text-text-muted transition-colors hover:text-text"
+              >
+                docs.powerhour.dev
+              </Link>
+              <Link
+                href={GITHUB_URL}
                 target="_blank"
                 rel="noreferrer"
                 className="text-sm text-text-muted transition-colors hover:text-text"
               >
-                powerhour.dev
+                GitHub repository
               </Link>
               <p className="text-sm text-text-muted">ISC License</p>
             </nav>

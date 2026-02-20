@@ -25,8 +25,6 @@ export function SiteHeader() {
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
         <a
           href={APP_SITE_URL}
-          target="_blank"
-          rel="noreferrer"
           className="font-display text-base font-bold tracking-tight text-text transition-colors hover:text-brand"
         >
           {SITE_NAME}

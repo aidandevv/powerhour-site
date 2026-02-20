@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DocsNav } from "@/components/docs/docs-nav.client";
 import { DOCS_SITE_URL, SITE_URL } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -151,6 +152,7 @@ export default function FaqPage() {
             Frequently asked questions for self-hosted operators. All route references refer to paths in your own
             deployment.
           </p>
+          <DocsNav />
         </header>
 
         <div className="mt-8 rounded border border-border bg-surface p-5">

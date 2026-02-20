@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DocsNav } from "@/components/docs/docs-nav.client";
 import { StickyToc, type TocItem } from "@/components/docs/sticky-toc.client";
 import { APP_SITE_URL, DOCS_SITE_URL, SITE_URL } from "@/lib/site-config";
 
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
 
 const TOC: TocItem[] = [
   { id: "scope", label: "Scope and Model" },
+  { id: "highlights", label: "Product Highlights" },
   { id: "quickstart", label: "Quickstart Flow" },
   { id: "modules", label: "Core Modules" },
   { id: "api-domains", label: "API Domains" },
@@ -23,6 +25,63 @@ const TOC: TocItem[] = [
   { id: "operations", label: "Operations and Runtime" },
   { id: "implementation", label: "Implementation Map" },
   { id: "next", label: "Next Reading" },
+];
+
+const PRODUCT_HIGHLIGHTS = [
+  {
+    title: "Unified dashboard",
+    detail:
+      "Daily financial posture with net worth, balances, category movement, and credit utilization in one command surface.",
+    routes: "/, /accounts, /accounts/[id]",
+  },
+  {
+    title: "Ticker AI diagnostics",
+    detail:
+      "Ask direct financial questions, compare trend windows, audit recurring costs, and trigger report generation flows.",
+    routes: "/ (embedded), floating chat on dashboard routes",
+  },
+  {
+    title: "Planner workflows",
+    detail:
+      "Mode-driven planning for travel, savings targets, and spend reduction with persisted conversations.",
+    routes: "/budget-planner, /projections",
+  },
+  {
+    title: "Transactions and groups",
+    detail:
+      "Search and filter transaction history, then organize records into groups for trip/project analysis.",
+    routes: "/transactions, /transactions/groups, /transactions/groups/[id]",
+  },
+  {
+    title: "Recurring and subscription control",
+    detail:
+      "Detect recurring items, flag inactive subscriptions, estimate monthly/annual risk, and deactivate noise quickly.",
+    routes: "/subscriptions, /projections",
+  },
+  {
+    title: "Security-first data boundaries",
+    detail:
+      "Encrypted tokens, restricted agent views, verified webhooks, and audit events for critical operations.",
+    routes: "/settings, /api/webhooks/plaid, /api/audit-log",
+  },
+];
+
+const READER_PATHS = [
+  {
+    role: "New operator",
+    path: "Scope and Model → Quickstart Flow → Walkthrough",
+    note: "Use this path to validate end-to-end setup before deep tuning.",
+  },
+  {
+    role: "Security reviewer",
+    path: "Security Model → Operations and Runtime → FAQ",
+    note: "Use this path to inspect controls, boundaries, and practical caveats.",
+  },
+  {
+    role: "Engineer contributor",
+    path: "Core Modules → API Domains → Implementation Map",
+    note: "Use this path to map features to code ownership quickly.",
+  },
 ];
 
 const MODULES = [
@@ -131,27 +190,22 @@ export default function DocsPage() {
             own deployment (for example <code className="font-mono text-xs">/transactions</code>), not a hosted web
             app endpoint.
           </p>
+          <DocsNav />
           <div className="flex flex-wrap gap-3">
             <a
               href={`${APP_SITE_URL}/features`}
-              target="_blank"
-              rel="noreferrer"
               className="rounded border border-border px-4 py-2 text-sm font-semibold text-text"
             >
               Features
             </a>
             <a
               href={`${APP_SITE_URL}/security`}
-              target="_blank"
-              rel="noreferrer"
               className="rounded border border-border px-4 py-2 text-sm font-semibold text-text"
             >
               Security
             </a>
             <a
               href={`${APP_SITE_URL}/deploy`}
-              target="_blank"
-              rel="noreferrer"
               className="rounded border border-border px-4 py-2 text-sm font-semibold text-text"
             >
               Deployment
@@ -181,6 +235,34 @@ export default function DocsPage() {
                   <span className="font-semibold text-text">Product runtime:</span> self-hosted instance controlled by deployer; route examples in this doc are app routes, not hosted URLs.
                 </li>
               </ul>
+              <div className="rounded border border-border bg-surface p-4">
+                <h3 className="text-sm font-semibold text-text">Reader paths</h3>
+                <div className="mt-3 grid gap-3 md:grid-cols-3">
+                  {READER_PATHS.map((path) => (
+                    <article key={path.role} className="rounded border border-border/60 bg-background p-3">
+                      <p className="text-sm font-semibold text-text">{path.role}</p>
+                      <p className="mt-1 text-xs text-text-muted">{path.path}</p>
+                      <p className="mt-1 text-xs text-text-muted">{path.note}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            <section id="highlights" className="scroll-mt-28 space-y-4 border-b border-border pb-10">
+              <h2 className="text-2xl font-bold text-text">Product Highlights</h2>
+              <p className="text-sm text-text-muted">
+                Quick orientation for non-engineering readers, with direct route context for operators and developers.
+              </p>
+              <div className="grid gap-3 md:grid-cols-2">
+                {PRODUCT_HIGHLIGHTS.map((item) => (
+                  <article key={item.title} className="rounded border border-border bg-surface p-4">
+                    <h3 className="text-sm font-semibold text-text">{item.title}</h3>
+                    <p className="mt-1 text-xs text-text-muted">{item.detail}</p>
+                    <p className="mt-2 font-mono text-xs text-text-muted">{item.routes}</p>
+                  </article>
+                ))}
+              </div>
             </section>
 
             <section id="quickstart" className="scroll-mt-28 space-y-3 border-b border-border pb-10">

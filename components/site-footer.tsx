@@ -8,7 +8,7 @@ export function SiteFooter() {
         <div className="grid gap-10 md:grid-cols-3">
           {/* Col 1: Brand */}
           <div className="space-y-3">
-            <p className="text-base font-semibold text-text">{SITE_NAME}</p>
+            <p className="font-display text-base font-bold tracking-tight text-text">{SITE_NAME}</p>
             <p className="text-sm text-text-muted">{SITE_TAGLINE}</p>
             <p className="text-xs text-text-muted">
               Not affiliated with Plaid, Inc. Deployer is responsible for API credentials, data handling, and platform compliance.

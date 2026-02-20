@@ -93,7 +93,7 @@ export function HeroSection() {
           </h1>
 
           <p className="text-base leading-relaxed text-text-muted md:text-lg">
-            Powerhour connects to your banks via Plaid, syncs transactions daily, and gives you two AI agents — Ticker for Q&amp;A and a Budget Planner for goal-setting. All on your own infrastructure.
+            Powerhour connects to your banks via Plaid, syncs transactions, and gives you two AI agents — Ticker for Q&amp;A and a Budget Planner for goal-setting. All on your own infrastructure.
           </p>
 
           <div className="flex flex-wrap gap-3 pt-1">
@@ -289,7 +289,7 @@ export function OpenSourceSection() {
 
         <div className="flex items-center">
           <pre className="w-full overflow-x-auto rounded-2xl border border-white/10 bg-black/20 p-7 font-mono text-sm leading-6 text-white/80 backdrop-blur-sm">
-            <code>{`git clone https://github.com/your-username/powerhour
+            <code>{`git clone https://github.com/aidandevv/powerhour
 cp .env.example .env
 
 # Configure your credentials:
@@ -318,7 +318,7 @@ export function DeploySection() {
           Self-hosting
         </span>
         <h2 className="mt-3 font-display text-4xl font-extrabold text-text md:text-5xl">
-          Self-host in four steps
+          Self-host in three steps
         </h2>
       </div>
 

@@ -10,9 +10,36 @@ export const metadata: Metadata = {
 };
 
 const PRODUCT_METRICS = [
-  { value: "13", label: "Live visualizations across dashboard and account views" },
-  { value: "2", label: "Purpose-built AI agents with distinct execution models" },
-  { value: "9", label: "In-memory PDF report sections generated on demand" },
+  {
+    value: "13",
+    label: "Live finance visuals",
+    detail: "Interactive views across balances, spending, utilization, and forward-looking forecasts.",
+    highlights: [
+      "Net worth, liquidity, and balance trendlines",
+      "Category, merchant, and payment-channel breakdowns",
+      "Cash-flow and savings projection views",
+    ],
+  },
+  {
+    value: "2",
+    label: "Specialized AI agents",
+    detail: "Two agents with clear roles: fast in-app diagnostics and deeper scenario-based planning.",
+    highlights: [
+      "Ticker AI for account-aware answers and analysis",
+      "Budget Planner for structured goal planning",
+      "Direct handoff into budgets and reporting workflows",
+    ],
+  },
+  {
+    value: "9",
+    label: "Report-ready PDF sections",
+    detail: "Modular sections generated in memory for fast, shareable weekly or monthly reporting.",
+    highlights: [
+      "Executive snapshot with key KPI movement",
+      "Account, category, and recurring-charge deep dives",
+      "Consistent, audit-friendly report formatting",
+    ],
+  },
 ];
 
 const CORE_MODULES = [
@@ -149,7 +176,7 @@ export default function FeaturesPage() {
           className="absolute inset-0 z-[1] bg-gradient-to-b from-background/35 via-background/10 to-background/60"
         />
         <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-10 px-6 py-16 md:grid-cols-[1.2fr_1fr] md:py-24">
-          <div className="animate-rise space-y-6 rounded-card border border-border bg-surface p-6 shadow-card md:p-8">
+          <div className="animate-rise space-y-6 rounded-card border border-border bg-surface p-6 shadow-card md:self-center md:p-8">
             <p className="inline-flex rounded-full border border-border bg-background px-4 py-1 text-sm font-medium text-text-muted">
               Full platform capabilities
             </p>
@@ -157,7 +184,7 @@ export default function FeaturesPage() {
               Every feature built for daily financial decisions, not dashboards for show.
             </h1>
             <p className="max-w-2xl text-lg text-text-muted">
-              Powerhour combines deep account analytics, two specialized AI agent workflows, automated recurring audits, and report generation in one self-hosted stack.
+              Powerhour combines deep account analytics, specialized AI workflows, automated recurring audits, and on-demand reporting in one self-hosted stack.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
@@ -176,11 +203,28 @@ export default function FeaturesPage() {
               </Link>
             </div>
           </div>
-          <div className="animate-rise-delayed grid gap-4">
+          <div className="animate-rise-delayed grid gap-4 md:self-center">
             {PRODUCT_METRICS.map((item) => (
-              <article key={item.label} className="rounded-card border border-border bg-surface p-6 shadow-card">
-                <p className="text-4xl font-extrabold text-brand">{item.value}</p>
-                <p className="mt-2 text-sm font-medium text-text-muted">{item.label}</p>
+              <article
+                key={item.label}
+                className="relative flex h-full flex-col overflow-hidden rounded-card border border-border bg-surface p-5 shadow-card"
+              >
+                <div className="relative">
+                  <p className="font-display text-5xl font-extrabold text-brand">{item.value}</p>
+                  <p className="text-base font-semibold text-text">{item.label}</p>
+                  <p className="mt-1 text-sm leading-snug text-text-muted">{item.detail}</p>
+                </div>
+                <div className="relative mt-4 border-t border-border pt-3">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-text-muted">Includes</p>
+                  <ul className="mt-2 space-y-1 text-sm leading-snug text-text-muted">
+                    {item.highlights.map((highlight) => (
+                      <li key={highlight} className="flex items-start gap-2">
+                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-brand" />
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </article>
             ))}
           </div>
@@ -200,37 +244,46 @@ export default function FeaturesPage() {
       </section>
 
       <section className="border-y border-border bg-surface-alt">
-        <div className="mx-auto grid w-full max-w-6xl gap-6 px-6 py-16 md:grid-cols-2 md:py-24">
-          <article className="rounded-card border border-border bg-surface p-6 shadow-card">
-            <h3 className="text-2xl font-bold text-text">Ticker AI chat</h3>
-            <p className="mt-3 text-sm text-text-muted">
-              Conversational analysis agent embedded in the dashboard for quick investigation and reporting actions.
-            </p>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {TICKER_TOOLS.map((tool) => (
-                <span
-                  key={tool}
-                  className="rounded-full border border-border bg-background px-3 py-1 text-xs font-semibold text-text-muted"
-                >
-                  {tool}
-                </span>
-              ))}
-            </div>
-          </article>
-          <article className="rounded-card border border-border bg-surface p-6 shadow-card">
-            <h3 className="text-2xl font-bold text-text">Budget Planner agent</h3>
-            <p className="mt-3 text-sm text-text-muted">
-              Long-form planning workflow optimized for objective-setting and decision support.
-            </p>
-            <div className="mt-5 space-y-3">
-              {PLANNER_MODES.map((mode) => (
-                <div key={mode.mode} className="rounded-xl border border-border bg-background p-4">
-                  <p className="text-sm font-semibold text-text">{mode.mode}</p>
-                  <p className="mt-1 text-sm text-text-muted">{mode.detail}</p>
-                </div>
-              ))}
-            </div>
-          </article>
+        <div className="mx-auto w-full max-w-6xl px-6 py-16 md:py-24">
+          <h2 className="text-3xl font-bold text-text md:text-4xl">Agentic features</h2>
+          <p className="mt-3 max-w-3xl text-text-muted">
+            Powerhour ships two agent execution models built on custom server-side tooling, typed tool schemas, and
+            step-capped orchestration for predictable behavior in production.
+          </p>
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            <article className="rounded-card border border-border bg-surface p-6 shadow-card">
+              <h3 className="text-2xl font-bold text-text">Ticker AI chat</h3>
+              <p className="mt-3 text-sm text-text-muted">
+                ReAct-style analysis agent embedded in the dashboard with streaming output, an 8-step execution cap,
+                and custom finance tools for diagnostics, projections, and reporting actions.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {TICKER_TOOLS.map((tool) => (
+                  <span
+                    key={tool}
+                    className="rounded-full border border-border bg-background px-3 py-1 text-xs font-semibold text-text-muted"
+                  >
+                    {tool}
+                  </span>
+                ))}
+              </div>
+            </article>
+            <article className="rounded-card border border-border bg-surface p-6 shadow-card">
+              <h3 className="text-2xl font-bold text-text">Budget Planner agent</h3>
+              <p className="mt-3 text-sm text-text-muted">
+                Mode-driven planner for research-heavy scenarios and goal execution, including multi-phase web research
+                loops, savings projections, and confirmation-gated write actions.
+              </p>
+              <div className="mt-5 space-y-3">
+                {PLANNER_MODES.map((mode) => (
+                  <div key={mode.mode} className="rounded-xl border border-border bg-background p-4">
+                    <p className="text-sm font-semibold text-text">{mode.mode}</p>
+                    <p className="mt-1 text-sm text-text-muted">{mode.detail}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 

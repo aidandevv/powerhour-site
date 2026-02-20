@@ -3,15 +3,6 @@ import "./globals.css";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
-const themeScript = `
-(function() {
-  var stored = localStorage.getItem('powerhour-theme');
-  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  var theme = stored === 'light' || stored === 'dark' ? stored : (prefersDark ? 'dark' : 'light');
-  document.documentElement.classList.toggle('dark', theme === 'dark');
-})();
-`;
-
 export const metadata: Metadata = {
   title: {
     default: "Powerhour | Self-hosted finance intelligence",
@@ -42,9 +33,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
       <body>
         <a href="#main" className="skip-link">
           Skip to content

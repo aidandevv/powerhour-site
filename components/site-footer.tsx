@@ -42,9 +42,8 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col items-start justify-between gap-2 border-t border-border pt-6 text-xs text-text-muted md:flex-row md:items-center">
+        <div className="mt-10 border-t border-border pt-6 text-xs text-text-muted">
           <p>© 2025 Powerhour. MIT License.</p>
-          <p>Built with Next.js</p>
         </div>
       </div>
     </footer>

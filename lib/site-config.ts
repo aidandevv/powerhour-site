@@ -2,7 +2,7 @@ export const SITE_NAME = "powerhour";
 export const SITE_TAGLINE = "Self-hosted finance intelligence, built for clarity.";
 
 export const GITHUB_URL =
-  process.env.NEXT_PUBLIC_GITHUB_URL ?? "https://github.com/your-username/powerhour";
+  process.env.NEXT_PUBLIC_GITHUB_URL ?? "https://github.com/aidandevv/powerhour";
 
 export const HERO_BADGE = "Open source · MIT License";
 

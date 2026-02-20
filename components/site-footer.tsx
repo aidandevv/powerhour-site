@@ -2,6 +2,8 @@ import Link from "next/link";
 import { GITHUB_URL, SITE_NAME, SITE_TAGLINE } from "@/lib/site-config";
 
 export function SiteFooter() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="border-t border-border bg-surface">
       <div className="mx-auto w-full max-w-6xl px-6 py-12">
@@ -21,6 +23,7 @@ export function SiteFooter() {
             <nav className="flex flex-col gap-2">
               <Link href="/features" className="text-sm text-text-muted transition-colors hover:text-text">Features</Link>
               <Link href="/security" className="text-sm text-text-muted transition-colors hover:text-text">Security</Link>
+              <Link href="/docs" className="text-sm text-text-muted transition-colors hover:text-text">Documentation</Link>
               <Link href="/deploy" className="text-sm text-text-muted transition-colors hover:text-text">Self-hosting</Link>
             </nav>
           </div>
@@ -37,13 +40,13 @@ export function SiteFooter() {
               >
                 GitHub repository
               </Link>
-              <p className="text-sm text-text-muted">MIT License</p>
+              <p className="text-sm text-text-muted">ISC License</p>
             </nav>
           </div>
         </div>
 
         <div className="mt-10 border-t border-border pt-6 text-xs text-text-muted">
-          <p>© 2025 Powerhour. MIT License.</p>
+          <p>© {currentYear} Powerhour. ISC License.</p>
         </div>
       </div>
     </footer>

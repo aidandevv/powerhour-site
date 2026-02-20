@@ -4,15 +4,25 @@ export const SITE_TAGLINE = "Self-hosted finance intelligence, built for clarity
 export const GITHUB_URL =
   process.env.NEXT_PUBLIC_GITHUB_URL ?? "https://github.com/aidandevv/powerhour";
 
-export const HERO_BADGE = "Open source · MIT License";
+const RAW_SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://powerhour.dev";
+
+const SITE_URL_WITH_PROTOCOL = RAW_SITE_URL.startsWith("http")
+  ? RAW_SITE_URL
+  : `https://${RAW_SITE_URL}`;
+
+export const SITE_URL = SITE_URL_WITH_PROTOCOL.replace(/\/+$/, "");
+
+export const HERO_BADGE = "Open source · ISC License";
 
 export const CTA_HEADLINE = "Your data. Your server. Your rules.";
 export const CTA_SUBTEXT =
-  "Powerhour is MIT-licensed and self-hosted. Clone the repo, run the migrations, and own your financial data stack.";
+  "Powerhour is ISC-licensed and self-hosted. Clone the repo, run the migrations, and own your financial data stack.";
 
 export const PRIMARY_NAV = [
   { label: "Features", href: "/features" },
   { label: "Security", href: "/security" },
+  { label: "Docs", href: "/docs" },
   { label: "Self-hosting", href: "/deploy" },
 ];
 
@@ -81,7 +91,7 @@ export const TECH_STACK = [
 ];
 
 export const OPEN_SOURCE_POINTS = [
-  "MIT licensed — fork, self-host, or adapt without restriction.",
+  "ISC licensed — fork, self-host, or adapt without restriction.",
   "No SaaS dependency. All data stays on your own infrastructure.",
   "Full source available: schema, agents, tools, and sync pipeline.",
   "Environment-first configuration. No vendor lock-in.",

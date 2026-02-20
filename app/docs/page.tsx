@@ -138,7 +138,7 @@ export default function DocsPage() {
               rel="noreferrer"
               className="rounded border border-border px-4 py-2 text-sm font-semibold text-text"
             >
-              Marketing: Features
+              Features
             </a>
             <a
               href={`${APP_SITE_URL}/security`}
@@ -146,7 +146,7 @@ export default function DocsPage() {
               rel="noreferrer"
               className="rounded border border-border px-4 py-2 text-sm font-semibold text-text"
             >
-              Marketing: Security
+              Security
             </a>
             <a
               href={`${APP_SITE_URL}/deploy`}
@@ -154,7 +154,7 @@ export default function DocsPage() {
               rel="noreferrer"
               className="rounded border border-border px-4 py-2 text-sm font-semibold text-text"
             >
-              Marketing: Deployment
+              Deployment
             </a>
           </div>
         </header>

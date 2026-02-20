@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { APP_SITE_URL, PRIMARY_NAV, SITE_NAME } from "@/lib/site-config";
+import { APP_SITE_URL, GITHUB_URL, PRIMARY_NAV, SITE_NAME } from "@/lib/site-config";
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -23,12 +23,14 @@ export function SiteHeader() {
       }`}
     >
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
-        <Link
-          href="/"
+        <a
+          href={APP_SITE_URL}
+          target="_blank"
+          rel="noreferrer"
           className="font-display text-base font-bold tracking-tight text-text transition-colors hover:text-brand"
         >
           {SITE_NAME}
-        </Link>
+        </a>
 
         <nav className="hidden items-center gap-7 md:flex">
           {PRIMARY_NAV.map((item) => (
@@ -41,12 +43,12 @@ export function SiteHeader() {
             </Link>
           ))}
           <Link
-            href={APP_SITE_URL}
+            href={GITHUB_URL}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-brand-strong hover:shadow-sm"
           >
-            powerhour.dev
+            GitHub
           </Link>
         </nav>
       </div>
@@ -63,12 +65,12 @@ export function SiteHeader() {
           </Link>
         ))}
         <Link
-          href={APP_SITE_URL}
+          href={GITHUB_URL}
           target="_blank"
           rel="noreferrer"
           className="rounded-full bg-brand px-3.5 py-1.5 text-xs font-semibold text-white whitespace-nowrap"
         >
-          powerhour.dev
+          GitHub
         </Link>
       </nav>
     </header>

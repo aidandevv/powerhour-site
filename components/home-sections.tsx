@@ -266,7 +266,7 @@ export function OpenSourceSection() {
             Open source
           </span>
           <h2 className="font-display text-3xl font-extrabold leading-tight text-white md:text-4xl">
-            MIT licensed.<br />No SaaS dependency.<br />No black box.
+            ISC licensed.<br />No SaaS dependency.<br />No black box.
           </h2>
           <ul className="space-y-3.5">
             {OPEN_SOURCE_POINTS.map((point) => (

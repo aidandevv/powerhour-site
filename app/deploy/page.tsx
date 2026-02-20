@@ -21,7 +21,7 @@ export default function DeployPage() {
         <h2 className="text-xl font-bold text-text">Prerequisites</h2>
         <ul className="mt-4 grid gap-2 sm:grid-cols-2 text-sm text-text-muted">
           <li className="flex items-center gap-2">
-            <span className="font-mono text-brand">→</span> Node.js 18 or later
+            <span className="font-mono text-brand">→</span> Node.js 22 or later
           </li>
           <li className="flex items-center gap-2">
             <span className="font-mono text-brand">→</span> PostgreSQL 14 or later

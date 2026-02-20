@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { SITE_URL } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: {
@@ -10,13 +11,13 @@ export const metadata: Metadata = {
   },
   description:
     "Powerhour is a self-hosted personal finance dashboard with AI-powered insights, planning workflows, and secure architecture.",
-  metadataBase: new URL("https://powerhour.example.com"),
+  metadataBase: new URL(SITE_URL),
   openGraph: {
     title: "Powerhour",
     description:
       "Self-hosted personal finance dashboard with AI-powered insights, budgeting workflows, and security-first architecture.",
     type: "website",
-    url: "https://powerhour.example.com",
+    url: SITE_URL,
   },
   twitter: {
     card: "summary_large_image",

@@ -51,7 +51,7 @@ export default function HeroShaderGradientClient() {
           width: "100%",
           height: "100%",
         }}
-        lazyLoad={false}
+        lazyLoad={true}
       >
         <ShaderGradient {...(shaderProps as Record<string, unknown>)} />
       </ShaderGradientCanvas>

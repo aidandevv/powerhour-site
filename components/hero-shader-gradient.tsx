@@ -7,13 +7,43 @@ const Fallback = () => (
 );
 
 export function HeroShaderGradient() {
+  const [shouldUseShader, setShouldUseShader] = useState(false);
   const [Client, setClient] = useState<React.ComponentType | null>(null);
 
   useEffect(() => {
-    import("@/components/hero-shader-gradient.client").then((mod) =>
-      setClient(() => mod.default),
-    );
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const mobileQuery = window.matchMedia("(max-width: 768px)");
+
+    const updateShouldUseShader = () => {
+      setShouldUseShader(!(reducedMotionQuery.matches || mobileQuery.matches));
+    };
+
+    updateShouldUseShader();
+
+    reducedMotionQuery.addEventListener("change", updateShouldUseShader);
+    mobileQuery.addEventListener("change", updateShouldUseShader);
+
+    return () => {
+      reducedMotionQuery.removeEventListener("change", updateShouldUseShader);
+      mobileQuery.removeEventListener("change", updateShouldUseShader);
+    };
   }, []);
 
-  return Client ? <Client /> : <Fallback />;
+  useEffect(() => {
+    if (!shouldUseShader || Client) return;
+
+    let isActive = true;
+    import("@/components/hero-shader-gradient.client").then((mod) => {
+      if (!isActive) return;
+      setClient(() => mod.default);
+    });
+
+    return () => {
+      isActive = false;
+    };
+  }, [shouldUseShader, Client]);
+
+  if (!shouldUseShader || !Client) return <Fallback />;
+
+  return <Client />;
 }

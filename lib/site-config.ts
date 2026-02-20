@@ -5,13 +5,22 @@ export const GITHUB_URL =
   process.env.NEXT_PUBLIC_GITHUB_URL ?? "https://github.com/aidandevv/powerhour";
 
 const RAW_SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://powerhour.dev";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://docs.powerhour.dev";
 
 const SITE_URL_WITH_PROTOCOL = RAW_SITE_URL.startsWith("http")
   ? RAW_SITE_URL
   : `https://${RAW_SITE_URL}`;
 
 export const SITE_URL = SITE_URL_WITH_PROTOCOL.replace(/\/+$/, "");
+
+const RAW_DOCS_SITE_URL =
+  process.env.NEXT_PUBLIC_DOCS_SITE_URL ?? SITE_URL;
+
+const DOCS_SITE_URL_WITH_PROTOCOL = RAW_DOCS_SITE_URL.startsWith("http")
+  ? RAW_DOCS_SITE_URL
+  : `https://${RAW_DOCS_SITE_URL}`;
+
+export const DOCS_SITE_URL = DOCS_SITE_URL_WITH_PROTOCOL.replace(/\/+$/, "");
 
 const RAW_APP_SITE_URL =
   process.env.NEXT_PUBLIC_APP_SITE_URL ?? "https://powerhour.dev";
@@ -31,7 +40,7 @@ export const CTA_SUBTEXT =
 export const PRIMARY_NAV = [
   { label: "Features", href: `${APP_SITE_URL}/features` },
   { label: "Security", href: `${APP_SITE_URL}/security` },
-  { label: "Docs", href: "/docs" },
+  { label: "Docs", href: `${DOCS_SITE_URL}/docs` },
   { label: "Self-hosting", href: `${APP_SITE_URL}/deploy` },
 ];
 

@@ -17,6 +17,8 @@ export function middleware(request: NextRequest) {
 
   if (
     pathname.startsWith("/docs") ||
+    pathname.startsWith("/walkthrough") ||
+    pathname.startsWith("/faq") ||
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
     isAssetPath(pathname)

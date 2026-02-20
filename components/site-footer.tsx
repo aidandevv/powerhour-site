@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { APP_SITE_URL, SITE_NAME, SITE_TAGLINE } from "@/lib/site-config";
+import { APP_SITE_URL, DOCS_SITE_URL, SITE_NAME, SITE_TAGLINE } from "@/lib/site-config";
 
 export function SiteFooter() {
   const currentYear = new Date().getFullYear();
@@ -23,7 +23,7 @@ export function SiteFooter() {
             <nav className="flex flex-col gap-2">
               <Link href={`${APP_SITE_URL}/features`} className="text-sm text-text-muted transition-colors hover:text-text">Features</Link>
               <Link href={`${APP_SITE_URL}/security`} className="text-sm text-text-muted transition-colors hover:text-text">Security</Link>
-              <Link href="/docs" className="text-sm text-text-muted transition-colors hover:text-text">Documentation</Link>
+              <Link href={`${DOCS_SITE_URL}/docs`} className="text-sm text-text-muted transition-colors hover:text-text">Documentation</Link>
               <Link href={`${APP_SITE_URL}/deploy`} className="text-sm text-text-muted transition-colors hover:text-text">Self-hosting</Link>
             </nav>
           </div>

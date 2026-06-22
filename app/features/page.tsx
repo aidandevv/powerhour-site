@@ -97,10 +97,10 @@ const CORE_MODULES = [
     title: "Self-hosted operations",
     body: "Designed for transparent infrastructure ownership and predictable deployment workflows.",
     points: [
-      "Dockerized deployment path",
-      "PostgreSQL + Drizzle migrations",
-      "Environment-based configuration",
-      "No required SaaS control plane",
+      "Versioned, checksum-verified release images on GHCR",
+      "One-command production Compose with a dedicated migrate service",
+      "Interactive setup wizard for secrets and .env generation",
+      "Optional nginx + Let's Encrypt TLS profile for source builds",
     ],
   },
 ];

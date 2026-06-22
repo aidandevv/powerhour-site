@@ -333,7 +333,7 @@ export default function DocsPage() {
               <ul className="space-y-2 text-sm text-text-muted">
                 <li>Startup initialization handled by <code className="font-mono text-xs">instrumentation.ts</code>.</li>
                 <li>Scheduler jobs configured in <code className="font-mono text-xs">lib/scheduler.ts</code>.</li>
-                <li>Environment and bootstrap automation in <code className="font-mono text-xs">scripts/setup.js</code>.</li>
+                <li>Environment and bootstrap automation in <code className="font-mono text-xs">scripts/setup.cjs</code>.</li>
                 <li>
                   Container runtime and reverse proxy in <code className="font-mono text-xs">docker/*</code> (source
                   build) and <code className="font-mono text-xs">deploy/docker-compose.yml</code> (versioned release

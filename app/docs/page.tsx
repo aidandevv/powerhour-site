@@ -164,7 +164,11 @@ const IMPLEMENTATION_MAP = [
   { area: "AI and tools", files: "lib/agent/agent.ts, lib/agent/budget-planner-agent.ts, lib/agent/tools/*" },
   { area: "Domain logic", files: "lib/projections.ts, lib/recurring.ts, lib/savings-projections.ts, lib/savings-targets.ts" },
   { area: "Data model", files: "lib/db/schema.ts, lib/db/views.ts, lib/db/migrations/*" },
-  { area: "Infra and deploy", files: "docker/Dockerfile, docker/docker-compose.yml, docker/nginx/nginx.conf, scripts/*" },
+  {
+    area: "Infra and deploy",
+    files:
+      "docker/Dockerfile, docker/docker-compose.yml (source build + optional tls profile), deploy/docker-compose.yml (release image + migrate/tools profile), docker/nginx/nginx.conf, scripts/setup.cjs, scripts/migrate.mjs",
+  },
 ];
 
 const docsSchema = {
@@ -330,7 +334,12 @@ export default function DocsPage() {
                 <li>Startup initialization handled by <code className="font-mono text-xs">instrumentation.ts</code>.</li>
                 <li>Scheduler jobs configured in <code className="font-mono text-xs">lib/scheduler.ts</code>.</li>
                 <li>Environment and bootstrap automation in <code className="font-mono text-xs">scripts/setup.js</code>.</li>
-                <li>Container runtime and reverse proxy in <code className="font-mono text-xs">docker/*</code>.</li>
+                <li>
+                  Container runtime and reverse proxy in <code className="font-mono text-xs">docker/*</code> (source
+                  build) and <code className="font-mono text-xs">deploy/docker-compose.yml</code> (versioned release
+                  image, with a separate <code className="font-mono text-xs">migrate</code> service gated behind the{" "}
+                  <code className="font-mono text-xs">tools</code> profile).
+                </li>
                 <li>Health and control routes under <code className="font-mono text-xs">/api/health</code> and <code className="font-mono text-xs">/api/settings/scheduler</code>.</li>
               </ul>
             </section>

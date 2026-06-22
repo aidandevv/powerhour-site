@@ -138,6 +138,6 @@ export const DEPLOY_STEPS = [
     step: "4",
     title: "Go to production with a release image",
     body: "For a real deployment, skip the source checkout entirely: pull a versioned, checksum-verified image from GHCR and run the bundled production Compose file with its migrate service.",
-    code: "export POWERHOUR_VERSION=v1.0.0\ncurl -fsSLO \"https://github.com/aidandevv/powerhour/releases/download/${POWERHOUR_VERSION}/docker-compose.yml\"\ndocker compose --profile tools run --rm migrate\ndocker compose up -d",
+    code: "export POWERHOUR_VERSION=v1.0.0\ncurl -fsSLO \"https://github.com/aidandevv/powerhour/releases/download/${POWERHOUR_VERSION}/docker-compose.yml\"\ncurl -fsSLo .env.example \"https://github.com/aidandevv/powerhour/releases/download/${POWERHOUR_VERSION}/env.example\"\ncurl -fsSLO \"https://github.com/aidandevv/powerhour/releases/download/${POWERHOUR_VERSION}/checksums.sha256\"\nsha256sum -c checksums.sha256\n\ndocker compose --profile tools run --rm migrate\ndocker compose up -d",
   },
 ];

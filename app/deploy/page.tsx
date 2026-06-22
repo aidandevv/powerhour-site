@@ -43,7 +43,7 @@ export default function DeployPage() {
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-white">
                 {step.step}
               </span>
-              <div className="flex-1 space-y-2">
+              <div className="min-w-0 flex-1 space-y-2">
                 <h2 className="text-lg font-semibold text-text">{step.title}</h2>
                 <p className="text-sm text-text-muted">{step.body}</p>
                 {step.code && (

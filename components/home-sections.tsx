@@ -290,15 +290,12 @@ export function OpenSourceSection() {
         <div className="flex items-center">
           <pre className="w-full overflow-x-auto rounded-2xl border border-white/10 bg-black/20 p-7 font-mono text-sm leading-6 text-white/80 backdrop-blur-sm">
             <code>{`git clone https://github.com/aidandevv/powerhour
-cp .env.example .env
+cd powerhour && npm install && npm run setup
 
-# Configure your credentials:
-# DATABASE_URL=postgres://...
-# PLAID_CLIENT_ID=...
-# PLAID_SECRET=...
-# SESSION_SECRET=...
+# Postgres via Docker — no local DB install needed
+docker compose -f docker/docker-compose.yml up db -d
 
-npm run db:migrate
+npm run db:push
 npm run dev`}</code>
           </pre>
         </div>

@@ -21,10 +21,10 @@ export default function DeployPage() {
         <h2 className="text-xl font-bold text-text">Prerequisites</h2>
         <ul className="mt-4 grid gap-2 sm:grid-cols-2 text-sm text-text-muted">
           <li className="flex items-center gap-2">
-            <span className="font-mono text-brand">→</span> Node.js 22 or later
+            <span className="font-mono text-brand">→</span> Docker Engine with Compose v2 (runs Postgres and, in production, the app itself)
           </li>
           <li className="flex items-center gap-2">
-            <span className="font-mono text-brand">→</span> PostgreSQL 14 or later
+            <span className="font-mono text-brand">→</span> Node.js 22 or later (source/dev workflow only — not required for the release image)
           </li>
           <li className="flex items-center gap-2">
             <span className="font-mono text-brand">→</span> Plaid developer account
@@ -91,6 +91,35 @@ export default function DeployPage() {
             </tbody>
           </table>
         </div>
+      </div>
+
+      {/* Production deployment */}
+      <div className="mt-12 rounded-card border border-border bg-surface-alt p-6">
+        <h2 className="text-xl font-bold text-text">Production deployment</h2>
+        <p className="mt-2 text-sm text-text-muted">
+          The recommended production path uses a versioned, checksum-verified image from GHCR and never requires a
+          source checkout or Node.js on the server.
+        </p>
+        <pre className="mt-4 overflow-x-auto rounded-xl border border-border bg-background p-4 text-sm text-text">
+          <code>{`export POWERHOUR_VERSION=v1.0.0
+curl -fsSLO "https://github.com/aidandevv/powerhour/releases/download/\${POWERHOUR_VERSION}/docker-compose.yml"
+curl -fsSLo .env.example "https://github.com/aidandevv/powerhour/releases/download/\${POWERHOUR_VERSION}/env.example"
+curl -fsSLO "https://github.com/aidandevv/powerhour/releases/download/\${POWERHOUR_VERSION}/checksums.sha256"
+sha256sum -c checksums.sha256
+
+docker compose --profile tools run --rm migrate
+docker compose up -d`}</code>
+        </pre>
+        <p className="mt-3 text-sm text-text-muted">
+          The app binds to <code className="rounded bg-border px-1 py-0.5 text-xs">127.0.0.1:3000</code> by default —
+          put Caddy, nginx, Traefik, or Cloudflare Tunnel in front for internet access. If you build from source
+          instead, the bundled <code className="rounded bg-border px-1 py-0.5 text-xs">docker/docker-compose.yml</code>{" "}
+          ships an opt-in nginx + Let&apos;s Encrypt profile (<code className="rounded bg-border px-1 py-0.5 text-xs">--profile tls</code>).
+        </p>
+        <p className="mt-3 text-sm text-text-muted">
+          Daily backups are a one-line cron job: <code className="rounded bg-border px-1 py-0.5 text-xs">docker compose exec -T db pg_dump</code>{" "}
+          piped through gpg encryption. Restore with the same command in reverse.
+        </p>
       </div>
 
       {/* CTA */}

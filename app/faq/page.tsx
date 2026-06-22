@@ -123,6 +123,30 @@ const FAQ_SECTIONS: FaqSection[] = [
       },
     ],
   },
+  {
+    id: "deployment",
+    title: "Deployment and updates",
+    items: [
+      {
+        id: "deployment-1",
+        question: "Do I need Docker?",
+        answer:
+          "Yes for Postgres at minimum — the documented dev quick start runs Postgres via Docker Compose. For production, the recommended path runs the app itself from a versioned Docker image too, so no Node.js install is required on the server.",
+      },
+      {
+        id: "deployment-2",
+        question: "How do I update to a new version?",
+        answer:
+          "Pull the release Compose file for the new version, verify its checksum, run the bundled migrate service to apply schema changes, then bring the app back up. The migrate step runs as a separate one-off container so it never races the running app.",
+      },
+      {
+        id: "deployment-3",
+        question: "How do I back up my data?",
+        answer:
+          "Run pg_dump inside the db container on a cron schedule and pipe the output through gpg for at-rest encryption. Restore by piping the decrypted dump back into psql inside the same container.",
+      },
+    ],
+  },
 ];
 
 const FAQ_PAGE_SCHEMA = {

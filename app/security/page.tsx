@@ -187,7 +187,7 @@ function DeployerSection() {
   const items = [
     "Serve the application over HTTPS with a valid TLS certificate.",
     <>Rotate <code className="rounded bg-border/80 px-1.5 py-0.5 text-xs font-medium text-text">SESSION_SECRET</code> and Plaid credentials periodically.</>,
-    "Keep Node.js and npm dependencies up to date with security patches.",
+    "Pull updated, checksum-verified release images regularly (or keep Node.js/npm dependencies patched if building from source).",
     "Restrict database network access to the application host only.",
   ];
 

@@ -12,6 +12,7 @@ import {
   TECH_STACK,
 } from "@/lib/site-config";
 import { HeroShaderGradient } from "@/components/hero-shader-gradient";
+import { ProductWorkspace } from "@/components/product-workspace.client";
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
@@ -72,15 +73,13 @@ export function HeroSection() {
     <section className="relative flex min-h-[88vh] items-center overflow-hidden">
       <HeroShaderGradient />
 
-      {/* Bottom fade only — glass card handles text legibility, so the gradient stays visible */}
       <div
         aria-hidden="true"
         className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-transparent to-background/50"
       />
 
       <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-8 px-6 py-24 md:grid-cols-[1.25fr_1fr] md:gap-12 md:py-32">
-        {/* Left: frosted glass content card */}
-        <div className="animate-rise rounded-2xl border border-border/40 bg-surface/75 p-8 shadow-card backdrop-blur-md space-y-6 md:p-10">
+        <div className="animate-rise space-y-6 rounded-2xl border border-border/40 bg-surface/75 p-8 shadow-card backdrop-blur-md md:p-10">
           <div className="flex items-center gap-3">
             <div className="h-px w-6 bg-brand" />
             <span className="text-xs font-sans font-semibold uppercase tracking-[0.18em] text-brand">
@@ -116,11 +115,10 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Right: metric cards */}
         <div className="grid gap-3 animate-rise-delayed">
           {[
             { n: "24", label: "AI tools across two agents" },
-            { n: "9",  label: "PDF report sections" },
+            { n: "9", label: "PDF report sections" },
             { n: "13", label: "Visualizations" },
           ].map(({ n, label }) => (
             <div
@@ -145,18 +143,47 @@ export function TechStackStrip() {
     <div className="bg-foreground">
       <div className="mx-auto flex w-full max-w-6xl flex-wrap items-stretch px-6 divide-x divide-background/10">
         <div className="flex items-center py-5 pr-8">
-          <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.22em] text-background/40">
+          <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.22em] text-background/60">
             Built with
           </span>
         </div>
         {TECH_STACK.map((item) => (
           <div key={item.label} className="flex flex-col justify-center px-7 py-5">
             <span className="text-sm font-semibold text-background/90">{item.label}</span>
-            <span className="text-xs text-background/45">{item.note}</span>
+            <span className="text-xs text-background/60">{item.note}</span>
           </div>
         ))}
       </div>
     </div>
+  );
+}
+
+// ─── Product Preview ─────────────────────────────────────────────────────────
+
+export function ProductPreviewSection() {
+  return (
+    <section className="relative overflow-hidden border-y border-border bg-surface-alt/45">
+      <div className="mx-auto w-full max-w-6xl px-6 py-20 md:py-28">
+        <div className="grid gap-6 md:grid-cols-12 md:items-end md:gap-8">
+          <div className="md:col-span-6">
+            <span className="text-xs font-sans font-semibold uppercase tracking-[0.18em] text-brand">
+              Inside Powerhour
+            </span>
+            <h2 className="mt-3 font-display text-4xl font-extrabold leading-tight text-text md:text-5xl">
+              See the whole picture.<br />Stay ahead of what&apos;s next.
+            </h2>
+          </div>
+          <p className="max-w-lg text-text-muted md:col-span-5 md:col-start-8 md:mb-1">
+            Powerhour turns scattered accounts, bills, and goals into one connected view—so
+            you can understand where you stand, spot what&apos;s coming, and act with confidence.
+          </p>
+        </div>
+
+        <div className="mt-14">
+          <ProductWorkspace />
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -310,18 +337,23 @@ export function DeploySection() {
   const steps = DEPLOY_STEPS.slice(0, 3);
   return (
     <section className="mx-auto w-full max-w-6xl px-6 py-20 md:py-28">
-      <div className="mb-12">
+      <div className="mb-10 grid gap-5 md:grid-cols-[0.9fr_1.1fr] md:items-end">
         <span className="text-xs font-sans font-semibold uppercase tracking-[0.18em] text-brand">
           Self-hosting
         </span>
-        <h2 className="mt-3 font-display text-4xl font-extrabold text-text md:text-5xl">
-          Self-host in three steps
-        </h2>
+        <div>
+          <h2 className="font-display text-4xl font-extrabold text-text md:text-5xl">
+            From clone to your own dashboard.
+          </h2>
+          <p className="mt-3 max-w-xl text-text-muted">
+            The setup path stays close to the tools you already use: configure the project, prepare the database, then start the app.
+          </p>
+        </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-card md:grid md:grid-cols-3">
         {steps.map((step) => (
-          <StepCard key={step.step} step={step.step} title={step.title} body={step.body} />
+          <SetupStep key={step.step} title={step.title} body={step.body} code={step.code} />
         ))}
       </div>
 
@@ -338,15 +370,36 @@ export function DeploySection() {
   );
 }
 
-function StepCard({ step, title, body }: { step: string; title: string; body: string }) {
+function SetupStep({ title, body, code }: { title: string; body: string; code?: string }) {
+  const icon = title === "Clone and configure" ? "terminal" : title === "Run database migrations" ? "database" : "play";
+
   return (
-    <article className="relative overflow-hidden rounded-2xl border border-border bg-surface p-6 shadow-card">
-      <span className="pointer-events-none absolute -right-1 -top-5 font-display text-[7.5rem] font-extrabold leading-none text-border select-none">
-        {step}
-      </span>
-      <h3 className="relative font-display text-lg font-bold text-text">{title}</h3>
-      <p className="relative mt-2 text-sm leading-relaxed text-text-muted">{body}</p>
+    <article className="border-b border-border p-6 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0">
+      <div className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand/10 text-brand">
+        <SetupIcon name={icon} />
+      </div>
+      <h3 className="font-display text-lg font-bold text-text">{title}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-text-muted">{body}</p>
+      {code ? (
+        <code className="mt-5 block whitespace-pre-wrap rounded-lg bg-surface-alt px-3 py-2.5 font-mono text-xs leading-5 text-text">
+          {code}
+        </code>
+      ) : null}
     </article>
+  );
+}
+
+function SetupIcon({ name }: { name: "terminal" | "database" | "play" }) {
+  const paths = {
+    terminal: "M4 5l5 4-5 4m7 0h5M3 3h18v18H3z",
+    database: "M12 3c4.42 0 8 1.34 8 3s-3.58 3-8 3-8-1.34-8-3 3.58-3 8-3zm8 3v6c0 1.66-3.58 3-8 3s-8-1.34-8-3V6m16 6v6c0 1.66-3.58 3-8 3s-8-1.34-8-3v-6",
+    play: "M8 5v14l11-7z",
+  };
+
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d={paths[name]} />
+    </svg>
   );
 }
 

@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   description:
     "Powerhour is a self-hosted personal finance dashboard with AI-powered insights, planning workflows, and secure architecture.",
   metadataBase: new URL(SITE_URL),
+  icons: {
+    icon: "/favicon.ico",
+  },
   openGraph: {
     title: "Powerhour",
     description:
@@ -39,7 +42,9 @@ export default function RootLayout({
           Skip to content
         </a>
         <SiteHeader />
-        <main id="main">{children}</main>
+        <main id="main" tabIndex={-1}>
+          {children}
+        </main>
         <SiteFooter />
       </body>
     </html>

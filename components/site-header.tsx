@@ -30,7 +30,7 @@ export function SiteHeader() {
           {SITE_NAME}
         </a>
 
-        <nav className="hidden items-center gap-7 md:flex">
+        <nav aria-label="Primary navigation" className="hidden items-center gap-7 md:flex">
           {PRIMARY_NAV.map((item) => (
             <Link
               key={item.href}
@@ -52,7 +52,7 @@ export function SiteHeader() {
       </div>
 
       {/* Mobile nav */}
-      <nav className="mx-auto flex w-full max-w-6xl items-center gap-2 overflow-x-auto px-6 pb-3 md:hidden">
+      <nav aria-label="Mobile navigation" className="scrollbar-none mx-auto flex w-full max-w-6xl items-center gap-2 overflow-x-auto px-6 pb-3 md:hidden">
         {PRIMARY_NAV.map((item) => (
           <Link
             key={item.href}

@@ -4,6 +4,7 @@ import {
   FeatureGridSection,
   HeroSection,
   OpenSourceSection,
+  ProductPreviewSection,
   SecuritySection,
   TechStackStrip,
 } from "@/components/home-sections";
@@ -27,6 +28,7 @@ export default function HomePage() {
       />
       <HeroSection />
       <TechStackStrip />
+      <ProductPreviewSection />
       <FeatureGridSection />
       <SecuritySection />
       <OpenSourceSection />

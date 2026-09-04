@@ -20,7 +20,7 @@ export function SiteFooter() {
           {/* Col 2: Product */}
           <div className="space-y-3">
             <p className="text-xs font-semibold uppercase tracking-widest text-text-muted">Product</p>
-            <nav className="flex flex-col gap-2">
+            <nav aria-label="Product links" className="flex flex-col gap-2">
               <Link href={`${APP_SITE_URL}/features`} className="text-sm text-text-muted transition-colors hover:text-text">Features</Link>
               <Link href={`${APP_SITE_URL}/security`} className="text-sm text-text-muted transition-colors hover:text-text">Security</Link>
               <Link href={`${DOCS_SITE_URL}/docs`} className="text-sm text-text-muted transition-colors hover:text-text">Documentation</Link>
@@ -31,7 +31,7 @@ export function SiteFooter() {
           {/* Col 3: Platform */}
           <div className="space-y-3">
             <p className="text-xs font-semibold uppercase tracking-widest text-text-muted">Platform</p>
-            <nav className="flex flex-col gap-2">
+            <nav aria-label="Platform links" className="flex flex-col gap-2">
               <Link
                 href={APP_SITE_URL}
                 className="text-sm text-text-muted transition-colors hover:text-text"

@@ -152,7 +152,7 @@ function SecurityLayers() {
               {/* Prose side */}
               <div className={`flex flex-col justify-center space-y-4 ${even ? "" : "md:order-2"}`}>
                 <div className="flex items-center gap-3">
-                  <span className="font-display text-4xl font-extrabold text-border">
+                  <span className="font-display text-4xl font-extrabold text-text-muted">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-success/10 ring-1 ring-success/10">

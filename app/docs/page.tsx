@@ -222,7 +222,7 @@ export default function DocsPage() {
             <StickyToc items={TOC} />
           </aside>
 
-          <main className="space-y-12">
+          <div className="space-y-12">
             <section id="scope" className="scroll-mt-28 space-y-3 border-b border-border pb-10">
               <h2 className="text-2xl font-bold text-text">Scope and Model</h2>
               <p className="text-sm text-text-muted">
@@ -383,7 +383,7 @@ export default function DocsPage() {
                 </li>
               </ul>
             </section>
-          </main>
+          </div>
         </div>
       </div>
     </>

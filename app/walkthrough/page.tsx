@@ -157,7 +157,7 @@ export default function WalkthroughPage() {
           <StickyToc title="Workflows" items={TOC} />
         </aside>
 
-        <main className="space-y-10">
+        <div className="space-y-10">
           {SECTIONS.map((section) => (
             <section key={section.id} id={section.id} className="scroll-mt-28 rounded border border-border bg-surface p-6">
               <h2 className="text-2xl font-bold text-text">{section.title}</h2>
@@ -216,7 +216,7 @@ export default function WalkthroughPage() {
               </div>
             </section>
           ))}
-        </main>
+        </div>
       </div>
 
       <footer className="mt-8 border-t border-border pt-5 text-xs text-text-muted">

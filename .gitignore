@@ -1,6 +1,14 @@
 node_modules
 .next
+.next-*
 out
 .env*
 .DS_Store
 *.tsbuildinfo
+coverage
+playwright-report
+test-results
+blob-report
+.claude/worktrees/
+.playwright-mcp/
+outputs/

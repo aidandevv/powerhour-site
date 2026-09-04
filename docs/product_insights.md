@@ -354,3 +354,49 @@
 > — see [CP-TESTING] | 2026-09-04: Layered Quality Gates for the Marketing Site.
 
 ---
+
+### [PI-ACCESSIBILITY] | 2026-09-04: Deployment Commands Must Remain Keyboard-Readable
+
+**Observation:**
+- A deployment-content update added horizontally scrollable command blocks that could not receive keyboard focus. The automated accessibility suite caught the issue before the branch was pushed.
+
+**User / Journey Context:**
+- **User Segment:** Self-hosters navigating with a keyboard or reviewing commands on a narrow screen.
+- **Journey Stage:** Evaluation / setup.
+- **User Goal:** Read and use the complete deployment command without losing context.
+
+**Evidence:**
+- **Source:** Axe scan of `/deploy` during CI-mode browser verification.
+- **Strength:** Medium.
+- **Notes:** The scan reported two serious keyboard-access failures. Adding focusability and descriptive labels cleared the scan.
+- **Counter-Evidence:** No direct self-hoster feedback has been collected.
+
+**Product Impact:**
+- The self-hosting guide is a trust and activation surface; inaccessible commands can block users from completing setup.
+
+**Product Risk Lens:**
+- **Primary Risk:** Accessibility.
+- **Why:** Keyboard users could not access horizontal command overflow independently.
+
+**Hypothesis:**
+- If every horizontally scrollable command block is focusable, keyboard users can inspect full commands and complete setup with the same information available to pointer users.
+
+**Decision / Next Step:**
+- Keep the axe check required and apply this focusability pattern to future scrollable technical content.
+
+**Priority Signal:**
+- **Reach:** Medium.
+- **Impact:** High.
+- **Confidence:** High.
+- **Effort:** Low.
+
+**Cross-Log:**
+- Related engineering entry: `[CP-DEBUG] | 2026-09-04: Quality Gate Caught Keyboard-Inaccessible Deployment Commands` in `./docs/dev_journal.md`.
+
+**Open Questions:**
+- None identified.
+
+> **[CROSS-LOG]** Engineering root cause logged in `./docs/dev_journal.md`
+> — see [CP-DEBUG] | 2026-09-04: Quality Gate Caught Keyboard-Inaccessible Deployment Commands.
+
+---

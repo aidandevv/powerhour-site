@@ -47,7 +47,11 @@ export default function DeployPage() {
                 <h2 className="text-lg font-semibold text-text">{step.title}</h2>
                 <p className="text-sm text-text-muted">{step.body}</p>
                 {step.code && (
-                  <pre className="overflow-x-auto rounded-xl border border-border bg-background p-4 text-sm text-text">
+                  <pre
+                    aria-label={`${step.title} commands`}
+                    className="overflow-x-auto rounded-xl border border-border bg-background p-4 text-sm text-text"
+                    tabIndex={0}
+                  >
                     <code>{step.code}</code>
                   </pre>
                 )}
@@ -100,7 +104,11 @@ export default function DeployPage() {
           The recommended production path uses a versioned, checksum-verified image from GHCR and never requires a
           source checkout or Node.js on the server.
         </p>
-        <pre className="mt-4 overflow-x-auto rounded-xl border border-border bg-background p-4 text-sm text-text">
+        <pre
+          aria-label="Production deployment commands"
+          className="mt-4 overflow-x-auto rounded-xl border border-border bg-background p-4 text-sm text-text"
+          tabIndex={0}
+        >
           <code>{`export POWERHOUR_VERSION=v1.0.0
 curl -fsSLO "https://github.com/aidandevv/powerhour/releases/download/\${POWERHOUR_VERSION}/docker-compose.yml"
 curl -fsSLo .env.example "https://github.com/aidandevv/powerhour/releases/download/\${POWERHOUR_VERSION}/env.example"

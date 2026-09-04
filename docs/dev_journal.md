@@ -307,3 +307,37 @@
 > — see [PI-ACCESSIBILITY] | 2026-09-04: Accessibility Is a First-Visit Trust Requirement.
 
 ---
+
+<!-- SESSION: 2026-09-04 14:50 PDT | rebased quality verification -->
+
+### [CP-DEBUG] | 2026-09-04: Quality Gate Caught Keyboard-Inaccessible Deployment Commands
+
+**The Context & Problem:**
+- Replaying the testing suite on top of newly merged deployment documentation exposed two horizontally scrollable command blocks on `/deploy` that keyboard users could not focus.
+
+**Design Decisions & Trade-offs:**
+- **Choice:** Make each scrollable command block keyboard focusable and give it an accessible label.
+- **Alternatives Considered:** Suppressing the axe rule would conceal a real WCAG keyboard-accessibility defect.
+- **Why:** A long command must be reachable with the keyboard before it can be scrolled and read in a narrow viewport.
+
+**The Pivot/Revision:**
+- The prior visual baselines correctly failed after the merged deployment and documentation changes. After reviewing the intended content expansion, the affected snapshots were regenerated and verified in normal comparison mode.
+
+**Implementation Notes:**
+- **Files/Modules Affected:** `app/deploy/page.tsx` and the affected Playwright visual snapshots.
+- **Core Pattern Introduced:** Treat focusability as part of every `overflow-x-auto` code sample’s contract.
+
+**Verification & Evidence:**
+- `npm run lint`, `npm run typecheck`, `npm run test:coverage`, and `npm run build` passed.
+- `npm run test:a11y` passed after the fix; the CI-mode cross-browser suite passed all 39 cases, and the normal visual suite passed all nine snapshots.
+
+**Cross-Log:**
+- Related product entry: `[PI-ACCESSIBILITY] | 2026-09-04: Deployment Commands Must Remain Keyboard-Readable` in `./docs/product_insights.md`.
+
+**Open Questions / Follow-ups:**
+- None identified.
+
+> **[CROSS-LOG]** Product impact logged in `./docs/product_insights.md`
+> — see [PI-ACCESSIBILITY] | 2026-09-04: Deployment Commands Must Remain Keyboard-Readable.
+
+---

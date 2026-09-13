@@ -357,3 +357,57 @@
 **Follow-ups:** Obtain explicit approval before pushing the prepared commits.
 
 ---
+
+<!-- SESSION: 2026-09-12 19:02 PDT | Linux visual baselines -->
+
+### [CP-PIVOT] | 2026-09-12: Platform-Specific Visual Regression Baselines
+
+**The Context & Problem:**
+- The Quality workflow runs Chromium visual regression tests on Ubuntu, while the checked-in screenshots had been generated on macOS. Every visual assertion failed consistently in CI despite local passes, with page-height and font-rendering differences across all nine references.
+
+**Design Decisions & Trade-offs:**
+- **Choice:** Store Playwright screenshot references by operating system (`-darwin` and `-linux`), use the failed workflow's stable Linux captures as the first Linux references, and provide a manual Linux candidate workflow that uploads a review artifact without writing to the repository.
+- **Alternatives Considered:** Increasing screenshot tolerances would hide meaningful visual changes. Replacing macOS references with Linux images would make local developer feedback fail.
+- **Why:** Platform-specific files preserve strict pixel-level regression detection in both environments while making Linux CI the authoritative source for its own rendering output.
+
+**The Pivot/Revision:**
+- The original snapshot template omitted Playwright's platform token. Adding it separates otherwise identical screenshot names by `process.platform` without changing the test assertions.
+
+**Implementation Notes:**
+- **Files/Modules Affected:** `playwright.config.ts`, `.github/workflows/linux-visual-baseline-candidate.yml`, `docs/testing.md`, and `tests/e2e/marketing.visual.spec.ts-snapshots/`.
+- **Core Pattern Introduced:** CI validates tracked Linux baselines on every change; a manually dispatched, read-only workflow renders candidate Linux images and a binary patch for review before any baseline update is committed.
+
+**Verification & Evidence:**
+- Repeated CI captures for all nine visual references were pixel-identical across retries; their only binary variance was PNG encoding metadata in one file.
+- Linting, TypeScript validation, coverage testing (20 tests), production build, cross-browser testing (37 passed, 2 expected skips), and the macOS visual suite (9 passed) completed successfully.
+- The Linux files in the working tree match the selected CI captures byte-for-byte, and the candidate workflow's YAML parses successfully.
+
+**Documentation & References Utilized:**
+- [Playwright TestConfig](https://playwright.dev/docs/api/class-testconfig) - `{platform}` in `snapshotPathTemplate` resolves to `process.platform`.
+
+**Code Snapshot/Diff Concept:**
+- `shared screenshot name → platform-specific reference` and `manual Linux render → review artifact + patch → intentional committed baseline`.
+
+**Cross-Log:**
+- None. This is a testing-infrastructure correction; no new product behavior or user insight was established.
+
+**Open Questions / Follow-ups:**
+- Run the Quality workflow on this branch after it is pushed to verify the new Linux references in a fresh Ubuntu job.
+
+---
+
+<!-- SESSION: 2026-09-12 20:36 PDT | local Linux visual verification -->
+
+### [CP-TESTING] | 2026-09-12: Pinned Linux Visual Regression Preflight
+
+**Summary:** Replayed the production build and Chromium visual suite inside the pinned Playwright 1.62.1 Ubuntu Noble image on Linux/amd64. The tracked Linux references passed before remote CI.
+
+**Files/Modules Affected:** None modified; verification covered the existing Linux snapshot configuration and all public visual-reference files.
+
+**Key Trade-off:** An isolated container adds setup time but avoids contaminating the macOS workspace and validates the Linux-specific references that the Quality workflow uses.
+
+**Evidence:** `npm ci`, `npm run build`, and `CI=1 npm run test:visual` completed in the Linux container. All 9 Chromium visual tests passed.
+
+**Follow-ups:** Run the remote Quality workflow after push for final GitHub-runner confirmation.
+
+---

@@ -395,3 +395,19 @@
 - Run the Quality workflow on this branch after it is pushed to verify the new Linux references in a fresh Ubuntu job.
 
 ---
+
+<!-- SESSION: 2026-09-12 20:36 PDT | local Linux visual verification -->
+
+### [CP-TESTING] | 2026-09-12: Pinned Linux Visual Regression Preflight
+
+**Summary:** Replayed the production build and Chromium visual suite inside the pinned Playwright 1.62.1 Ubuntu Noble image on Linux/amd64. The tracked Linux references passed before remote CI.
+
+**Files/Modules Affected:** None modified; verification covered the existing Linux snapshot configuration and all public visual-reference files.
+
+**Key Trade-off:** An isolated container adds setup time but avoids contaminating the macOS workspace and validates the Linux-specific references that the Quality workflow uses.
+
+**Evidence:** `npm ci`, `npm run build`, and `CI=1 npm run test:visual` completed in the Linux container. All 9 Chromium visual tests passed.
+
+**Follow-ups:** Run the remote Quality workflow after push for final GitHub-runner confirmation.
+
+---

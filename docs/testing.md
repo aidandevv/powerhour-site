@@ -33,13 +33,17 @@ Use accessible roles, labels, and user-visible text for test selectors. Do not a
 
 ## Visual snapshot workflow
 
-Snapshots are source-controlled review artifacts, not generated build output. Update them only when a visual change is intentional:
+Snapshots are source-controlled review artifacts, not generated build output. They are platform-specific because Chromium's font rendering differs between macOS and Linux. The standard quality workflow validates the `-linux` baselines, while local macOS runs validate the `-darwin` baselines.
+
+Update local baselines only when a visual change is intentional:
 
 ```bash
 npx playwright test --project=chromium-visual --update-snapshots
 ```
 
-Review every changed PNG in the pull request. Baselines are named for the dedicated Chromium visual project and use fixed viewports, reduced motion, and local fonts; confirm every visual change again in Linux CI before merging.
+Review every changed PNG in the pull request. Baselines use fixed viewports, reduced motion, and local fonts; do not copy macOS screenshots over the Linux references.
+
+To propose Linux baseline changes, run the **Linux Visual Baseline Candidate** workflow manually and select the branch to validate. It uploads a `linux-visual-baseline-candidate` artifact containing the Linux PNGs and a binary patch. Download the artifact, inspect the visual changes, apply only the intended `-linux` baseline updates, and commit them with the corresponding UI change. The workflow never writes to the repository.
 
 ## Coverage policy
 

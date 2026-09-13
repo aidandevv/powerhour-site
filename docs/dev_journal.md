@@ -341,3 +341,19 @@
 > — see [PI-ACCESSIBILITY] | 2026-09-04: Deployment Commands Must Remain Keyboard-Readable.
 
 ---
+
+<!-- SESSION: 2026-09-12 17:31 PDT | repository delivery pipeline -->
+
+### [CP-INTEGRATION] | 2026-09-12: Documented Commit-to-Remote Readiness Pipeline
+
+**Summary:** Added a repository agent guide that makes the local change-review, validation, and remote-readiness sequence explicit. The guide aligns contributor behavior with the existing Quality workflow so pre-push evidence and CI coverage use the same checks.
+
+**Files/Modules Affected:** `AGENTS.md`, `docs/dev_journal.md`.
+
+**Key Trade-off:** The broader browser and visual checks take longer than static validation, but they protect the public, interactive site from cross-browser, accessibility, and presentation regressions before remote review.
+
+**Evidence:** Linting, TypeScript validation, coverage testing (20 tests; 91.35% statements, 84.25% branches, 92.75% functions, 94.11% lines), and the production build passed. The browser suite passed 37 tests with 2 expected skips; all 9 visual-regression tests passed. The remote reference was refreshed successfully.
+
+**Follow-ups:** Obtain explicit approval before pushing the prepared commits.
+
+---

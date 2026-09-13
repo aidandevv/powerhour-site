@@ -1,0 +1,47 @@
+name: Linux Visual Baseline Candidate
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Branch, tag, or commit to render
+        required: true
+        default: main
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: linux-visual-baseline-${{ inputs.ref }}
+  cancel-in-progress: true
+
+env:
+  NEXT_TELEMETRY_DISABLED: "1"
+
+jobs:
+  render:
+    name: Render Linux visual baseline candidate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      - run: npm run test:visual -- --update-snapshots
+      - name: Create review patch
+        run: git diff --binary -- tests/e2e/marketing.visual.spec.ts-snapshots > linux-visual-baselines.patch
+      - name: Upload Linux baseline candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-visual-baseline-candidate
+          path: |
+            tests/e2e/marketing.visual.spec.ts-snapshots/*-linux.png
+            linux-visual-baselines.patch
+          retention-days: 14

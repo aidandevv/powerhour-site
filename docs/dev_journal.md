@@ -411,3 +411,19 @@
 **Follow-ups:** Run the remote Quality workflow after push for final GitHub-runner confirmation.
 
 ---
+
+<!-- SESSION: 2026-09-12 20:52 PDT | remote quality enforcement -->
+
+### [CP-INTEGRATION] | 2026-09-12: Enforced Main-Branch Quality Gate
+
+**Summary:** Established the remote enforcement layer for the documented delivery pipeline on `main`: pull requests require one approval, both Quality jobs must pass on the current head, and conversations must be resolved before merging.
+
+**Files/Modules Affected:** `docs/dev_journal.md`; remote branch-protection configuration for `main`.
+
+**Key Trade-off:** Enforcing the gate for administrators prevents emergency direct pushes, in exchange for a consistent, reviewable release path.
+
+**Evidence:** The remote configuration confirms strict status checks for Static quality and unit tests and Browser, accessibility, and visual tests; force pushes and branch deletion are disabled. The open visual-baseline pull request has both Quality jobs passing and is correctly marked as requiring review.
+
+**Follow-ups:** Approve and merge the visual-baseline pull request through the protected workflow when ready.
+
+---

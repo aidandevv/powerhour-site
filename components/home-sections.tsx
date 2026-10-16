@@ -343,7 +343,7 @@ export function DeploySection() {
         </span>
         <div>
           <h2 className="font-display text-4xl font-extrabold text-text md:text-5xl">
-            From clone to your own dashboard.
+            Ramp up in three steps
           </h2>
           <p className="mt-3 max-w-xl text-text-muted">
             The setup path stays close to the tools you already use: configure the project, prepare the database, then start the app.

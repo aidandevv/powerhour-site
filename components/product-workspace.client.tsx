@@ -292,10 +292,7 @@ function StoryBeat({
   return (
     <article className="grid items-center gap-9 lg:grid-cols-12 lg:gap-12">
       <div className={reverse ? "lg:order-2 lg:col-span-4" : "lg:col-span-4"}>
-        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-brand">
-          {story.label}
-        </p>
-        <h3 className="mt-4 max-w-md font-display text-4xl font-extrabold leading-[1.04] tracking-tight text-text md:text-5xl lg:text-[3.25rem]">
+        <h3 className="max-w-md font-display text-4xl font-extrabold leading-[1.04] tracking-tight text-text md:text-5xl lg:text-[3.25rem]">
           {story.title}
         </h3>
         <p className="mt-5 max-w-md text-base leading-relaxed text-text-muted">

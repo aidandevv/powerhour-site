@@ -181,7 +181,7 @@ export default function FeaturesPage() {
               Full platform capabilities
             </p>
             <h1 className="max-w-3xl text-4xl font-extrabold leading-tight text-text md:text-6xl md:leading-[1.05]">
-              Every feature built for daily financial decisions, not dashboards for show.
+              Every feature built for daily financial decisions.
             </h1>
             <p className="max-w-2xl text-lg text-text-muted">
               Powerhour combines deep account analytics, specialized AI workflows, automated recurring audits, and on-demand reporting in one self-hosted stack.

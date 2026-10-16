@@ -58,7 +58,17 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-10 border-t border-border pt-6 text-xs text-text-muted">
-          <p>© {currentYear} Powerhour. ISC License.</p>
+          <p>© {currentYear} Aidan DeVaney. ISC License.</p>
+          <p className="mt-2">
+            <Link
+              href="https://aidandevaney.com"
+              target="_blank"
+              rel="noreferrer"
+              className="transition-colors hover:text-text"
+            >
+              View more of my work at aidandevaney.com
+            </Link>
+          </p>
         </div>
       </div>
     </footer>

@@ -298,10 +298,6 @@ function StoryBeat({
         <p className="mt-5 max-w-md text-base leading-relaxed text-text-muted">
           {story.body}
         </p>
-        <div className="mt-7 flex items-center gap-3 text-xs font-semibold text-text">
-          <span className="h-px w-8 bg-brand/45" aria-hidden="true" />
-          Explore the live product
-        </div>
       </div>
       <div className={reverse ? "lg:order-1 lg:col-span-8" : "lg:col-span-8"}>
         {children}

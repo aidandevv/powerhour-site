@@ -5,7 +5,6 @@ import {
   DEPLOY_STEPS,
   FEATURE_SUMMARIES,
   GITHUB_URL,
-  HERO_BADGE,
   OPEN_SOURCE_POINTS,
   SECURITY_POINTS,
   SITE_TAGLINE,
@@ -80,13 +79,6 @@ export function HeroSection() {
 
       <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-8 px-6 py-24 md:grid-cols-[1.25fr_1fr] md:gap-12 md:py-32">
         <div className="animate-rise space-y-6 rounded-2xl border border-border/40 bg-surface/75 p-8 shadow-card backdrop-blur-md md:p-10">
-          <div className="flex items-center gap-3">
-            <div className="h-px w-6 bg-brand" />
-            <span className="text-xs font-sans font-semibold uppercase tracking-[0.18em] text-brand">
-              {HERO_BADGE}
-            </span>
-          </div>
-
           <h1 className="font-display text-[2.6rem] font-extrabold leading-[1.06] tracking-tight text-text md:text-5xl lg:text-[3.25rem]">
             {SITE_TAGLINE}
           </h1>
@@ -166,10 +158,7 @@ export function ProductPreviewSection() {
       <div className="mx-auto w-full max-w-6xl px-6 py-20 md:py-28">
         <div className="grid gap-6 md:grid-cols-12 md:items-end md:gap-8">
           <div className="md:col-span-6">
-            <span className="text-xs font-sans font-semibold uppercase tracking-[0.18em] text-brand">
-              Inside Powerhour
-            </span>
-            <h2 className="mt-3 font-display text-4xl font-extrabold leading-tight text-text md:text-5xl">
+            <h2 className="font-display text-4xl font-extrabold leading-tight text-text md:text-5xl">
               See the whole picture.<br />Stay ahead of what&apos;s next.
             </h2>
           </div>
@@ -193,10 +182,7 @@ export function FeatureGridSection() {
   return (
     <section className="mx-auto w-full max-w-6xl px-6 py-20 md:py-28">
       <div className="mb-12">
-        <span className="text-xs font-sans font-semibold uppercase tracking-[0.18em] text-brand">
-          Features
-        </span>
-        <h2 className="mt-3 font-display text-4xl font-extrabold leading-tight text-text md:text-5xl">
+        <h2 className="font-display text-4xl font-extrabold leading-tight text-text md:text-5xl">
           Two AI agents. One self-hosted stack.<br className="hidden md:block" /> Full financial visibility.
         </h2>
         <p className="mt-4 max-w-2xl text-text-muted">
@@ -232,9 +218,6 @@ export function SecuritySection() {
     <section className="border-y border-border bg-surface-alt">
       <div className="mx-auto grid w-full max-w-6xl gap-12 px-6 py-20 md:grid-cols-[1fr_1.3fr] md:py-28">
         <div className="flex flex-col justify-center space-y-5">
-          <span className="text-xs font-sans font-semibold uppercase tracking-[0.18em] text-success">
-            Security
-          </span>
           <h2 className="font-display text-3xl font-extrabold leading-tight text-text md:text-4xl">
             Security built into<br />the data layer,<br />not bolted on.
           </h2>
@@ -289,9 +272,6 @@ export function OpenSourceSection() {
 
       <div className="relative mx-auto grid w-full max-w-6xl gap-12 px-6 py-20 md:grid-cols-2 md:py-28">
         <div className="space-y-6">
-          <span className="text-xs font-sans font-semibold uppercase tracking-[0.18em] text-white/50">
-            Open source
-          </span>
           <h2 className="font-display text-3xl font-extrabold leading-tight text-white md:text-4xl">
             ISC licensed.<br />No SaaS dependency.<br />No black box.
           </h2>
@@ -337,10 +317,7 @@ export function DeploySection() {
   const steps = DEPLOY_STEPS.slice(0, 3);
   return (
     <section className="mx-auto w-full max-w-6xl px-6 py-20 md:py-28">
-      <div className="mb-10 grid gap-5 md:grid-cols-[0.9fr_1.1fr] md:items-end">
-        <span className="text-xs font-sans font-semibold uppercase tracking-[0.18em] text-brand">
-          Self-hosting
-        </span>
+      <div className="mb-10">
         <div>
           <h2 className="font-display text-4xl font-extrabold text-text md:text-5xl">
             From clone to your own dashboard.

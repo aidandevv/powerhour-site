@@ -194,7 +194,6 @@ export function ProductWorkspace() {
     <div className="space-y-24 md:space-y-32 lg:space-y-40">
       <StoryBeat story={STORY_MODES[0]}>
         <AppWindow
-          sectionLabel={STORY_MODES[0].label}
           heading="Dashboard"
           activeNav="Dashboard"
           action={
@@ -221,7 +220,6 @@ export function ProductWorkspace() {
 
       <StoryBeat story={STORY_MODES[1]} reverse>
         <AppWindow
-          sectionLabel={STORY_MODES[1].label}
           heading="Projections"
           activeNav="Planning"
         >
@@ -236,7 +234,6 @@ export function ProductWorkspace() {
 
       <StoryBeat story={STORY_MODES[2]}>
         <AppWindow
-          sectionLabel={STORY_MODES[2].label}
           heading="Subscriptions"
           activeNav="Planning"
         >
@@ -256,7 +253,6 @@ export function ProductWorkspace() {
 
       <StoryBeat story={STORY_MODES[3]} reverse>
         <AppWindow
-          sectionLabel={STORY_MODES[3].label}
           heading="AI Budget Planner"
           activeNav="Planning"
         >
@@ -307,13 +303,11 @@ function StoryBeat({
 }
 
 function AppWindow({
-  sectionLabel,
   heading,
   activeNav,
   action,
   children,
 }: {
-  sectionLabel: string;
   heading: string;
   activeNav: "Dashboard" | "Planning";
   action?: React.ReactNode;
@@ -348,10 +342,7 @@ function AppWindow({
       <div className="px-4 py-5 sm:px-5 sm:py-6">
         <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-brand">
-              {sectionLabel}
-            </p>
-            <h4 className="mt-1 font-display text-2xl font-extrabold text-text">
+            <h4 className="font-display text-2xl font-extrabold text-text">
               {heading}
             </h4>
           </div>

@@ -57,7 +57,7 @@ export const FEATURE_SUMMARIES = [
   },
   {
     icon: "plan",
-    title: "Budget Planner",
+    title: "Budget Planner (Beta)",
     body: "Generate travel budgets, savings plans, and spend-reduction strategies with mode-specific agent workflows.",
   },
   {
@@ -104,13 +104,13 @@ export const TECH_STACK = [
   { label: "Next.js 14", note: "App Router + TypeScript" },
   { label: "PostgreSQL", note: "via Drizzle ORM" },
   { label: "Plaid", note: "Bank-grade data sync" },
-  { label: "Gemini 2.5 Flash", note: "AI agent backbone" },
+  { label: "Gemini 2.5 Flash-Lite", note: "Default AI model" },
   { label: "AI SDK v6", note: "Streaming + tool calls" },
 ];
 
 export const OPEN_SOURCE_POINTS = [
   "ISC licensed — fork, self-host, or adapt without restriction.",
-  "No SaaS dependency. All data stays on your own infrastructure.",
+  "Store financial records on your own infrastructure. Local-model support is in beta.",
   "Full source available: schema, agents, tools, and sync pipeline.",
   "Environment-first configuration. No vendor lock-in.",
 ];

@@ -41,7 +41,7 @@ const PRODUCT_HIGHLIGHTS = [
     routes: "/ (embedded), floating chat on dashboard routes",
   },
   {
-    title: "Planner workflows",
+    title: "Planner workflows (Beta)",
     detail:
       "Mode-driven planning for travel, savings targets, and spend reduction with persisted conversations.",
     routes: "/budget-planner, /projections",
@@ -113,7 +113,7 @@ const MODULES = [
     name: "Settings and control plane",
     routes: ["/settings"],
     summary:
-      "Scheduler toggles, institution management, sync controls, password changes, and audit event visibility.",
+      "Scheduler toggles, institution management, sync controls, password changes, audit events, and configured AI models. Local-model support is in beta.",
   },
 ];
 
@@ -138,7 +138,7 @@ const API_DOMAINS = [
   },
   {
     domain: "Agent execution",
-    endpoints: "/api/ai/chat, /api/ai/budget-planner, /api/ai/report",
+    endpoints: "/api/ai/chat, /api/ai/budget-planner, /api/ai/report, /api/ai/status",
   },
   {
     domain: "Plaid and sync",
@@ -161,7 +161,7 @@ const IMPLEMENTATION_MAP = [
   { area: "API routes", files: "app/api/**/route.ts" },
   { area: "UI composition", files: "components/dashboard/*, components/chat/*, components/budget-planner/*, components/charts/*" },
   { area: "State and hooks", files: "hooks/use-dashboard.ts, hooks/use-transactions.ts, hooks/use-accounts.ts, hooks/use-expense-groups.ts" },
-  { area: "AI and tools", files: "lib/agent/agent.ts, lib/agent/budget-planner-agent.ts, lib/agent/tools/*" },
+  { area: "AI and tools", files: "lib/ai/model.ts, lib/ai/features.ts, lib/agent/agent.ts, lib/agent/budget-planner-agent.ts, lib/agent/tools/*" },
   { area: "Domain logic", files: "lib/projections.ts, lib/recurring.ts, lib/savings-projections.ts, lib/savings-targets.ts" },
   { area: "Data model", files: "lib/db/schema.ts, lib/db/views.ts, lib/db/migrations/*" },
   {
@@ -330,6 +330,25 @@ export default function DocsPage() {
 
             <section id="operations" className="scroll-mt-28 space-y-3 border-b border-border pb-10">
               <h2 className="text-2xl font-bold text-text">Operations and Runtime</h2>
+              <p className="text-sm text-text-muted">
+                AI workflows default to Gemini 2.5 Flash-Lite (<code className="font-mono text-xs">gemini-2.5-flash-lite</code>).
+                Local-model support (Beta) covers Ticker, Budget Planner, PDF summaries, smart budget goals, and weekly digests
+                through an OpenAI-compatible server such as Ollama, llama.cpp, or LM Studio.
+              </p>
+              <p className="text-sm text-text-muted">
+                Set <code className="font-mono text-xs">AI_PROVIDER=openai-compatible</code>,{" "}
+                <code className="font-mono text-xs">AI_BASE_URL</code> to the server&apos;s endpoint ending in <code className="font-mono text-xs">/v1</code>,
+                and <code className="font-mono text-xs">AI_MODEL</code> to a loaded model. A Gemini key is not needed for this provider.
+                Optional overrides use <code className="font-mono text-xs">AI_MODEL_CHAT</code>,{" "}
+                <code className="font-mono text-xs">AI_MODEL_PLANNER</code>, <code className="font-mono text-xs">AI_MODEL_REPORT</code>,{" "}
+                <code className="font-mono text-xs">AI_MODEL_GOALS</code>, and <code className="font-mono text-xs">AI_MODEL_DIGEST</code>.
+                Settings → AI models shows the configured models. During beta, tool support, response time, and output quality vary by model.
+              </p>
+              <p className="text-sm text-text-muted">
+                For Docker deployments, the model endpoint must be reachable from the app container.
+                With Ollama on the host, use <code className="font-mono text-xs">http://host.docker.internal:11434/v1</code>.
+                Run Ollama natively on macOS for GPU access and configure a context window of at least 16,384 tokens for the agent tools.
+              </p>
               <ul className="space-y-2 text-sm text-text-muted">
                 <li>Startup initialization handled by <code className="font-mono text-xs">instrumentation.ts</code>.</li>
                 <li>Scheduler jobs configured in <code className="font-mono text-xs">lib/scheduler.ts</code>.</li>

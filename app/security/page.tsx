@@ -231,12 +231,16 @@ function SecurityCta() {
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-8 px-6 py-24 text-center md:py-32">
         <div className="space-y-4">
           <h2 className="font-display text-3xl font-extrabold text-text md:text-4xl">
-            Your data never leaves<br className="hidden md:block" />
-            your infrastructure.
+            Your records stay<br className="hidden md:block" />
+            on your infrastructure.
           </h2>
           <p className="mx-auto max-w-lg text-text-muted">
-            Every security control is open source. Read the implementation,
-            audit the code, verify the claims.
+            AI context goes to your configured provider: Gemini 2.5 Flash-Lite by default,
+            or a local model server (Beta). Agent data boundaries and name masking remain in place with either provider.
+          </p>
+          <p className="mx-auto max-w-lg text-text-muted">
+            Amounts, dates, and categories can still reach that provider. Plaid sync and planner web research
+            use external services. Every security control is open source for you to inspect.
           </p>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-3">

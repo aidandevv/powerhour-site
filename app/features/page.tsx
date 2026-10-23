@@ -26,7 +26,7 @@ const PRODUCT_METRICS = [
     detail: "Two agents with clear roles: fast in-app diagnostics and deeper scenario-based planning.",
     highlights: [
       "Ticker AI for account-aware answers and analysis",
-      "Budget Planner for structured goal planning",
+      "Budget Planner (Beta) for structured goal planning",
       "Direct handoff into budgets and reporting workflows",
     ],
   },
@@ -247,8 +247,9 @@ export default function FeaturesPage() {
         <div className="mx-auto w-full max-w-6xl px-6 py-16 md:py-24">
           <h2 className="text-3xl font-bold text-text md:text-4xl">Agentic features</h2>
           <p className="mt-3 max-w-3xl text-text-muted">
-            Powerhour ships two agent execution models built on custom server-side tooling, typed tool schemas, and
-            step-capped orchestration for predictable behavior in production.
+            Ticker answers questions about your records; Budget Planner (Beta) helps turn a goal into a plan.
+            Gemini 2.5 Flash-Lite is the default. Local-model support is in beta across both assistants,
+            PDF summaries, smart budget goals, and weekly digests. Tool support and response times vary by model.
           </p>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             <article className="rounded-card border border-border bg-surface p-6 shadow-card">
@@ -269,7 +270,7 @@ export default function FeaturesPage() {
               </div>
             </article>
             <article className="rounded-card border border-border bg-surface p-6 shadow-card">
-              <h3 className="text-2xl font-bold text-text">Budget Planner agent</h3>
+              <h3 className="text-2xl font-bold text-text">Budget Planner agent (Beta)</h3>
               <p className="mt-3 text-sm text-text-muted">
                 Mode-driven planner for research-heavy scenarios and goal execution, including multi-phase web research
                 loops, savings projections, and confirmation-gated write actions.

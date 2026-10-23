@@ -92,7 +92,7 @@ export function HeroSection() {
           </h1>
 
           <p className="text-base leading-relaxed text-text-muted md:text-lg">
-            Powerhour connects to your banks via Plaid, syncs transactions, and gives you two AI agents — Ticker for Q&amp;A and a Budget Planner for goal-setting. All on your own infrastructure.
+            Powerhour connects to your banks via Plaid, syncs transactions, and helps you move from account activity to a plan. Self-hosted, with Gemini by default and local-model support in beta.
           </p>
 
           <div className="flex flex-wrap gap-3 pt-1">
@@ -200,7 +200,7 @@ export function FeatureGridSection() {
           Two AI agents. One self-hosted stack.<br className="hidden md:block" /> Full financial visibility.
         </h2>
         <p className="mt-4 max-w-2xl text-text-muted">
-          Two purpose-built AI agents, 13 live visualizations, structured planning workflows, and audit-ready security controls — in a single codebase you own.
+          Two purpose-built AI agents, 13 live visualizations, and planning tools grounded in your synced records. Local-model support for Ticker, Budget Planner, PDF summaries, smart budget goals, and weekly digests is in beta.
         </p>
       </div>
 

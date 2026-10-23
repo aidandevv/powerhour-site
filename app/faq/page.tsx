@@ -83,7 +83,13 @@ const FAQ_SECTIONS: FaqSection[] = [
         id: "features-1",
         question: "What is the difference between Ticker and Planner?",
         answer:
-          "Ticker handles short diagnostic analysis in context. Planner supports longer mode-based flows (travel, savings targets, spend reduction).",
+          "Ticker answers questions about synced records. Budget Planner (Beta) supports longer flows for travel, savings targets, and spend reduction.",
+      },
+      {
+        id: "features-4",
+        question: "Can I use a local model? (Beta)",
+        answer:
+          "Yes. Gemini 2.5 Flash-Lite is the default; local-model support is in beta for Ticker, Budget Planner, PDF summaries, smart budget goals, and weekly digests. Configure an OpenAI-compatible server such as Ollama, llama.cpp, or LM Studio using AI_PROVIDER, AI_BASE_URL, and AI_MODEL. Settings → AI models shows the configured models. Tool support, response time, and output quality vary by model.",
       },
       {
         id: "features-2",
